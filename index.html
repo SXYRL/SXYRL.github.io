@@ -137,13 +137,15 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-测试测试"
+            <article id="post-常用模块"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-02-28 15:29:08" datetime="2018-02-28T07:29:08.000Z"  itemprop="datePublished">2018-02-28</time>
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
 
         
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
 
 
     </div>
@@ -153,7 +155,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/02/28/测试测试/">测试测试</a>
+      <a class="post-title-link" href="/2017/09/10/常用模块/">python之常用模块块</a>
     </h3>
   
 
@@ -163,13 +165,19 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        测试测试测试
-
+        python有一套很有用的标准库，标准库会随着python解释器，一起安装在你的电脑中的。它是python的一个组成部分，这些标准库是Python为你准备号的利器，可以让编程事半功倍。
+            标准库        说明                builtins        内建函数默认加载                os        操作系统接口       ...
     
 
-        <a href="/2018/02/28/测试测试/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/10/常用模块/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常用模块/">常用模块</a></li></ul>
+
     </div>
     
 </article>
@@ -177,13 +185,15 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-hello-world"
+            <article id="post-property"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-02-28 15:22:46" datetime="2018-02-28T07:22:46.961Z"  itemprop="datePublished">2018-02-28</time>
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
 
         
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
 
 
     </div>
@@ -193,7 +203,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/02/28/hello-world/">Hello World</a>
+      <a class="post-title-link" href="/2017/09/10/property/">python之property</a>
     </h3>
   
 
@@ -203,13 +213,437 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
+        在工作中，在绑定属性的时候，如果我们直接把属性写成全局的，虽然写起来比较简单，但是容易被随便修改，不符合逻辑，这时就需要把该属性进行限制，改成私有属性，通过内部方法进行调用或者修改以及检测
+
+例子：
+
+
+class Test(object):
+    def __init__(self):
+        self.__num = 100
+
+
+    def getNum(self):
+  ...
     
 
-        <a href="/2018/02/28/hello-world/" class="post-more waves-effect waves-button">
+        <a href="/2017/09/10/property/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/property/">property</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-闭包"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/闭包/">python之闭包</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        闭包简单理解就是函数内部再定义一个函数，内部定义的函数调用了该函数外部的变量，这种写法就形成了一个闭包。
+
+    
+
+        <a href="/2017/09/10/闭包/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-动态添加属性和方法"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/动态添加属性和方法/">python之动态添加属性方法</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        工作中，我们需要给某一个实例对象新添加一个新的实例方法，如果用添加属性的方法进行添加的话直接会报错：
+class Person:
+    def __init__(self,newName,newAge):
+        self.name = newName
+        self.age = newAge
+
+    def eat(self):
+        print(&apos...
+    
+
+        <a href="/2017/09/10/动态添加属性和方法/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态添加属性/">动态添加属性</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-内建函数"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/内建函数/">python之内建函数</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1，map函数
+定义：map函数会根据提供的函数对指定序列做映射，生成新的列表
+map(function,sequence[,sequence,…]) &gt;&gt;list
+function是一个函数sequence是一个或者多个学列，取决于function需要几个参数python3中返回的是map对象，需要迭代才能获取对象中的值，可以在外面转换成list对象
+参数学列中的每一个元素分别...
+    
+
+        <a href="/2017/09/10/内建函数/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内建函数/">内建函数</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-对象池"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/对象池/">python之对象池</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1，小整数对象池整数在程序中的使用非常广泛，Python为了优化速度，使用了小整数对象池，避免为整数频繁申请和销毁内存空间。python对小整数的定义是[-5,257],也就是-5到256且包含256，这些整数对象是提前建立好的，不会被垃圾回收，在一个python的程序中，所有位于这个范围内的整数使用的都是同一个对象。同理，单个字母也是这样的。但是当定义2个相同的字符串的时候，引用计数为0，...
+    
+
+        <a href="/2017/09/10/对象池/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象池/">对象池</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-迭代、列表生成式和生成器"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/迭代、列表生成式和生成器/">python之==和is</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        转载自廖雪峰官网：1,迭代
+如果给定一个list或tuple等可迭代对象，我们可以通过for循环来遍历这些可迭代对象，这种遍历我们称为迭代
+在python中，迭代是通过for in来完成的。
+list这种数据类型虽然有下标，但很多其他数据类型是没有下标的，但是，只要是可迭代对象，无论有无下标，都可以迭代，比如dict就可以迭代：
+dicts  = {&apos;a&apos;:1,&apos...
+    
+
+        <a href="/2017/09/10/迭代、列表生成式和生成器/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/迭代-列表生成式-生成器-yieid/">迭代 列表生成式 生成器 yieid</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-getattribute属性"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/getattribute属性/">python之内建函数</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1，map函数
+定义：map函数会根据提供的函数对指定序列做映射，生成新的列表
+map(function,sequence[,sequence,…]) &gt;&gt;list
+function是一个函数sequence是一个或者多个学列，取决于function需要几个参数python3中返回的是map对象，需要迭代才能获取对象中的值，可以在外面转换成list对象
+参数学列中的每一个元素分别...
+    
+
+        <a href="/2017/09/10/getattribute属性/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内建函数/">内建函数</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-装饰器"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/装饰器/">python之装饰器</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        装饰器的作用在原来代码的基础上进行功能扩展
+例如：原来我们有2个方法，f1和f2
+def f1():
+    print(&apos;f1&apos;)
+def f2():
+    print(&apos;f2&apos;)
+
+f1()
+f2()
+现在我们需要给这两个方法调用前加一个验证，验证成功就调用，失败则不调用：首先我们使用一种普通方法：    def w1(func):       ...
+    
+
+        <a href="/2017/09/10/装饰器/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/装饰器/">装饰器</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-进程的创建fork"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/10/进程的创建fork/">python之进程的创建</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1，进程和程序
+编写完毕的代码，在没有运行的时候，称之为程序正在运行着的代码，就成为进程进程，除了包含代码以外，还有需要运行的环境等，所以和程序是有区别的
+2，fork() 
+
+    
+
+        <a href="/2017/09/10/进程的创建fork/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/进程/">进程</a></li></ul>
+
     </div>
     
 </article>
@@ -219,6 +653,12 @@ Qu...
     </ul>
 
     
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    </div>
+</nav>
+
 
 </div>
 

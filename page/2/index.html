@@ -13,7 +13,7 @@
     
     
     
-    <title>归档 | 闫瑞龙的个人博客</title>
+    <title>闫瑞龙的个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#00a0e6">
@@ -23,7 +23,7 @@
     <meta name="keywords" content="全栈开发">
 <meta property="og:type" content="website">
 <meta property="og:title" content="闫瑞龙的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="闫瑞龙的个人博客">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -69,7 +69,7 @@
               </a>
             </li>
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 归档
@@ -101,7 +101,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">归档</div>
+        <div class="flex-col header-title ellipsis">闫瑞龙的个人博客</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -116,11 +116,13 @@
         
     </div>
 </header>
-<header class="content-header archives-header">
+<header class="content-header index-header">
 
     <div class="container fade-scale">
-        <h1 class="title">归档</h1>
+        <h1 class="title">闫瑞龙的个人博客</h1>
         <h5 class="subtitle">
+            
+                
             
         </h5>
     </div>
@@ -130,362 +132,229 @@
 
 </header>
 
-<div class="container body-wrap fade">
-    
+<div class="container body-wrap">
 
+    <ul class="post-list">
     
-            
-            <h3 class="archive-separator">九月, 2017</h3>
-            <div class="waterfall">
-    
+        <li class="post-list-item fade">
+            <article id="post-等号和is"
+  class="article-card article-type-post" itemprop="blogPost">
 
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
 
-      
+        
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
 
 
     </div>
+
     
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/常用模块/">python之常用模块块</a>
+      <a class="post-title-link" href="/2017/09/10/等号和is/">python之==和is</a>
     </h3>
   
 
 
 
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        关于 == 和 is
+判断内容的时候使用==
+#这里比较的是两个对象中的值，而不进行内存地址的检测，返回布尔值
+
+&gt;&gt;&gt;a = [1,2,3]    
+&gt;&gt;&gt;b = [1,2,3]
+&gt;&gt;&gt;a == b
+True
+判断是否指向同一个对象的时候用is
+&gt;&gt;&gt;a = [1,2,3]    
+&gt;&gt;&gt;b = [1...
+    
+
+        <a href="/2017/09/10/等号和is/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常用模块/">常用模块</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运算符/">运算符</a></li></ul>
 
     </div>
     
-  </article>
-</div>
+</article>
 
+        </li>
     
+        <li class="post-list-item fade">
+            <article id="post-集合"
+  class="article-card article-type-post" itemprop="blogPost">
 
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
 
-      
+        
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
 
 
     </div>
+
     
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/property/">python之property</a>
+      <a class="post-title-link" href="/2017/09/10/集合/">python之集合</a>
     </h3>
   
 
 
 
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        定义：python的set和其他语言类似, 是一个无序不重复元素集, 基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交), difference(差)和sysmmetric difference(对称差集)等数学运算.  
+sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，sets不记...
+    
+
+        <a href="/2017/09/10/集合/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/property/">property</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/set集合/">set集合</a></li></ul>
 
     </div>
     
-  </article>
-</div>
+</article>
 
+        </li>
     
+        <li class="post-list-item fade">
+            <article id="post-垃圾回收"
+  class="article-card article-type-post" itemprop="blogPost">
 
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+        <time class="post-time" title="2017-01-02 22:56:34" datetime="2017-01-02T14:56:34.000Z"  itemprop="datePublished">2017-01-02</time>
 
-      
+        
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
 
 
     </div>
+
     
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/闭包/">python之闭包</a>
+      <a class="post-title-link" href="/2017/01/02/垃圾回收/">python之垃圾回收</a>
     </h3>
   
 
 
 
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        垃圾回收机制（GC）
+关于垃圾回收高级语言里都采用了垃圾回收机制，而不再是C，C++里用户自己管理内存。在python里采用的是引用技术机制为主，标记-清除和分代手机两种机制为辅的策略
+关于引用计数python里每个东西都是对象，通过底层的一个方法对当前对象的引用进行计数,当一个对象有新的引用的时候，它的计数就会增加，当引用它的对象被删除，它的引用计数就减少，当引用计数为0的时候，该对象生命...
+    
+
+        <a href="/2017/01/02/垃圾回收/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/垃圾回收/">垃圾回收</a></li></ul>
 
     </div>
     
-  </article>
-</div>
+</article>
 
+        </li>
     
+        <li class="post-list-item fade">
+            <article id="post-深拷贝和浅拷贝"
+  class="article-card article-type-post" itemprop="blogPost">
 
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+        <time class="post-time" title="2017-01-01 11:13:01" datetime="2017-01-01T03:13:01.000Z"  itemprop="datePublished">2017-01-01</time>
 
-      
+        
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
 
 
     </div>
+
     
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/动态添加属性和方法/">python之动态添加属性方法</a>
+      <a class="post-title-link" href="/2017/01/01/深拷贝和浅拷贝/">深入python之浅拷贝和深拷贝</a>
     </h3>
   
 
 
 
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        关于python中的浅拷贝和深拷贝在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象：
+例：&gt;&gt;&gt;a = [1,2,3]
+&gt;&gt;&gt;b = a
+#打印a的内存地址    
+&gt;&gt;&gt;id(a)
+45817096
+#打印b的内存地址
+&gt;&gt;&gt;id(b)
+45817096
+#这里...
+    
+
+        <a href="/2017/01/01/深拷贝和浅拷贝/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态添加属性/">动态添加属性</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块-copy/">模块 copy</a></li></ul>
 
     </div>
     
-  </article>
-</div>
+</article>
 
+        </li>
     
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/内建函数/">python之内建函数</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内建函数/">内建函数</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/对象池/">python之对象池</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象池/">对象池</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/迭代、列表生成式和生成器/">python之==和is</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/迭代-列表生成式-生成器-yieid/">迭代 列表生成式 生成器 yieid</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/getattribute属性/">python之内建函数</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内建函数/">内建函数</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/装饰器/">python之装饰器</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/装饰器/">装饰器</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-
-        <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
-
-      
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/进程的创建fork/">python之进程的创建</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/进程/">进程</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-
-    
-    </div>
+    </ul>
 
     
 <nav id="page-nav">
     <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </div>
 </nav>
+
 
 </div>
 

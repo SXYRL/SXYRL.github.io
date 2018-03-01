@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>深入python之浅拷贝和深拷贝 | 闫瑞龙的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#00a0e6">
+    
+    
+    <meta name="keywords" content="模块 copy">
+    <meta name="description" content="关于python中的浅拷贝和深拷贝在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象： 例：&amp;gt;&amp;gt;&amp;gt;a = [1,2,3] &amp;gt;&amp;gt;&amp;gt;b = a #打印a的内存地址     &amp;gt;&amp;gt;&amp;gt;id(a) 45817096 #打印b的内存地址 &amp;gt;&amp;gt;&amp;gt;id(b) 45817096 #这里的a和">
+<meta name="keywords" content="模块 copy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入python之浅拷贝和深拷贝">
+<meta property="og:url" content="http://yoursite.com/2017/01/01/深拷贝和浅拷贝/index.html">
+<meta property="og:site_name" content="闫瑞龙的个人博客">
+<meta property="og:description" content="关于python中的浅拷贝和深拷贝在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象： 例：&amp;gt;&amp;gt;&amp;gt;a = [1,2,3] &amp;gt;&amp;gt;&amp;gt;b = a #打印a的内存地址     &amp;gt;&amp;gt;&amp;gt;id(a) 45817096 #打印b的内存地址 &amp;gt;&amp;gt;&amp;gt;id(b) 45817096 #这里的a和">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-17T03:22:18.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入python之浅拷贝和深拷贝">
+<meta name="twitter:description" content="关于python中的浅拷贝和深拷贝在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象： 例：&amp;gt;&amp;gt;&amp;gt;a = [1,2,3] &amp;gt;&amp;gt;&amp;gt;b = a #打印a的内存地址     &amp;gt;&amp;gt;&amp;gt;id(a) 45817096 #打印b的内存地址 &amp;gt;&amp;gt;&amp;gt;id(b) 45817096 #这里的a和">
+    
+        <link rel="alternate" type="application/atom+xml" title="闫瑞龙的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">闫瑞龙</h5>
+          <a href="mailto:719114998@qq.com" title="719114998@qq.com" class="mail">719114998@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">深入python之浅拷贝和深拷贝</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">深入python之浅拷贝和深拷贝</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-01T03:13:01.000Z" itemprop="datePublished" class="page-time">
+  2017-01-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关于python中的浅拷贝和深拷贝"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于python中的浅拷贝和深拷贝</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#例："><span class="post-toc-number">2.</span> <span class="post-toc-text">例：</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-深拷贝和浅拷贝"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">深入python之浅拷贝和深拷贝</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-01-01 11:13:01" datetime="2017-01-01T03:13:01.000Z"  itemprop="datePublished">2017-01-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="关于python中的浅拷贝和深拷贝"><a href="#关于python中的浅拷贝和深拷贝" class="headerlink" title="关于python中的浅拷贝和深拷贝"></a>关于python中的浅拷贝和深拷贝</h1><p>在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象：</p>
+<h1 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h1><pre><code>&gt;&gt;&gt;a = [1,2,3]
+&gt;&gt;&gt;b = a
+#打印a的内存地址    
+&gt;&gt;&gt;id(a)
+45817096
+#打印b的内存地址
+&gt;&gt;&gt;id(b)
+45817096
+#这里的a和b指向的是同一个对象
+</code></pre><p>接下来就是我们要讲的浅拷贝和深拷贝，实现深浅拷贝首先需要引入copy模块:</p>
+<p>1：浅拷贝,使用copy模块下的copy()方法实现：</p>
+<pre><code>&gt;&gt;&gt;import copy
+
+&gt;&gt;&gt;a = [1,2,3,4]
+
+&gt;&gt;&gt;b = copy.copy(a)
+
+&gt;&gt;&gt; id(a)
+47818184
+
+&gt;&gt;&gt; id(b)
+47856904
+
+# 在这里我们发现b和a的内存地址不同，相当于复制一份新的列表[1,2,3,4]给了b,如果现在修改a的值，b的值不会随之变化：
+
+&gt;&gt;&gt; a.append(10)
+
+&gt;&gt;&gt; a
+
+[1, 2, 3, 4, 10]
+
+&gt;&gt;&gt; b
+[1, 2, 3, 4]
+
+
+# 我们接着往下走：
+
+&gt;&gt;&gt; aa = [1,2,3,[&apos;a&apos;,&apos;b&apos;]]
+
+&gt;&gt;&gt; bb = copy.copy(aa)
+
+&gt;&gt;&gt; id(aa)
+47914120
+
+&gt;&gt;&gt; id(bb)
+47697096
+
+# 接着我们继续输出列表嵌套内的列表的内存地址
+&gt;&gt;&gt; id(aa[3])
+47696776
+
+&gt;&gt;&gt; id(bb[3])
+47696776
+# 在这里我们发现内部嵌套的列表的内存地址是相同的，这里就说明了浅拷贝仅仅只是拷贝了父对象，而不会拷贝扶对象内部的子对象
+</code></pre><p>2：深拷贝，使用copy模块下的deepcopy()方法实现：</p>
+<pre><code>&gt;&gt;&gt;import copy
+
+&gt;&gt;&gt;a = [1,2,3,4]
+
+&gt;&gt;&gt;b = copy.deepcopy(a)
+
+&gt;&gt;&gt; id(a)
+47818184
+
+&gt;&gt;&gt; id(b)
+47856904
+#这里可以看到，如果当前拷贝对象没有子对象的时候，copy()和deep()没有区别
+#接着往下看：
+
+&gt;&gt;&gt; a = [1,2,3,4,[&apos;x&apos;,&apos;y&apos;]]
+
+&gt;&gt;&gt; b = copy.deepcopy()
+
+&gt;&gt;&gt; id(a[4])
+47733896
+
+&gt;&gt;&gt; id(b[4])
+47914056
+#这里我们发现，深拷贝会拷贝当前对象及其子对象，不论父对象嵌套多少子对象都会进行完全拷贝
+</code></pre><p>我们发现，刚才举例的时候只是用到了列表，实际工作中用到的不止有列表这么一种数据类型，我们不妨试一下其他的类型，比如试一试元祖：</p>
+<pre><code>&gt;&gt;&gt; a = (1,2,3,4,[&apos;aa&apos;,&apos;bb&apos;])
+&gt;&gt;&gt; b = copy.copy(a)
+
+&gt;&gt;&gt; id(a)
+45195112
+
+&gt;&gt;&gt; id(b)
+45195112
+
+&gt;&gt;&gt; id(a[4])
+46124808
+
+&gt;&gt;&gt; id(b[4])
+46124808
+#这里我们发现浅拷贝元祖的时候父对象也没有实现拷贝，还是指向了原来对象的内存地址
+
+&gt;&gt;&gt; c = copy.deepcopy(a)
+&gt;&gt;&gt; id(c)
+45853160
+
+&gt;&gt;&gt; id(c[4])
+46169224
+
+&gt;&gt;&gt; id(a[4])
+46124808
+#而深拷贝还是一如既往的一致，父对象和子对象都进行了拷贝
+#其实这里python默认帮我们进行了类型检测，如果是不可变类型则无法进行浅拷贝，只可以执行深拷贝，这个需要重点记忆，工作中可能就莫名出现此类BUG；
+</code></pre><p>小结：</p>
+<ol>
+<li>copy.copy() 浅拷贝 只拷贝父对象，不会拷贝对象的内部的子对象。 </li>
+<li>copy.deepcopy() 深拷贝 拷贝对象及其子对象 </li>
+<li>如果拷贝的类型是不可变类型的时候，浅拷贝不会拷贝父对象，只有深拷贝会执行拷贝</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-17T03:22:18.089Z" itemprop="dateUpdated">2017-12-17 11:22:18</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/01/01/深拷贝和浅拷贝/" target="_blank" rel="external">http://yoursite.com/2017/01/01/深拷贝和浅拷贝/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="闫瑞龙">
+            闫瑞龙
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块-copy/">模块 copy</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/02/垃圾回收/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python之垃圾回收</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>闫瑞龙 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">true</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

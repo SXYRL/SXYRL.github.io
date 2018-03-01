@@ -13,25 +13,25 @@
     
     
     
-    <title>测试测试 | 闫瑞龙的个人博客</title>
+    <title>python之垃圾回收 | 闫瑞龙的个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#00a0e6">
     
     
-    <meta name="keywords" content="">
-    <meta name="description" content="测试测试测试">
-<meta name="keywords" content="全栈开发">
+    <meta name="keywords" content="垃圾回收">
+    <meta name="description" content="垃圾回收机制（GC） 关于垃圾回收高级语言里都采用了垃圾回收机制，而不再是C，C++里用户自己管理内存。在python里采用的是引用技术机制为主，标记-清除和分代手机两种机制为辅的策略 关于引用计数python里每个东西都是对象，通过底层的一个方法对当前对象的引用进行计数,当一个对象有新的引用的时候，它的计数就会增加，当引用它的对象被删除，它的引用计数就减少，当引用计数为0的时候，该对象生命就结束">
+<meta name="keywords" content="垃圾回收">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试测试">
-<meta property="og:url" content="http://yoursite.com/2018/02/28/测试测试/index.html">
+<meta property="og:title" content="python之垃圾回收">
+<meta property="og:url" content="http://yoursite.com/2017/01/02/垃圾回收/index.html">
 <meta property="og:site_name" content="闫瑞龙的个人博客">
-<meta property="og:description" content="测试测试测试">
+<meta property="og:description" content="垃圾回收机制（GC） 关于垃圾回收高级语言里都采用了垃圾回收机制，而不再是C，C++里用户自己管理内存。在python里采用的是引用技术机制为主，标记-清除和分代手机两种机制为辅的策略 关于引用计数python里每个东西都是对象，通过底层的一个方法对当前对象的引用进行计数,当一个对象有新的引用的时候，它的计数就会增加，当引用它的对象被删除，它的引用计数就减少，当引用计数为0的时候，该对象生命就结束">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-28T07:29:31.326Z">
+<meta property="og:updated_time" content="2017-12-17T04:46:13.530Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试测试">
-<meta name="twitter:description" content="测试测试测试">
+<meta name="twitter:title" content="python之垃圾回收">
+<meta name="twitter:description" content="垃圾回收机制（GC） 关于垃圾回收高级语言里都采用了垃圾回收机制，而不再是C，C++里用户自己管理内存。在python里采用的是引用技术机制为主，标记-清除和分代手机两种机制为辅的策略 关于引用计数python里每个东西都是对象，通过底层的一个方法对当前对象的引用进行计数,当一个对象有新的引用的时候，它的计数就会增加，当引用它的对象被删除，它的引用计数就减少，当引用计数为0的时候，该对象生命就结束">
     
         <link rel="alternate" type="application/atom+xml" title="闫瑞龙的个人博客" href="/atom.xml">
     
@@ -105,7 +105,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">测试测试</div>
+        <div class="flex-col header-title ellipsis">python之垃圾回收</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -123,13 +123,15 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">测试测试</h1>
+        <h1 class="title">python之垃圾回收</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-02-28T07:29:08.000Z" itemprop="datePublished" class="page-time">
-  2018-02-28
+                <time datetime="2017-01-02T14:56:34.000Z" itemprop="datePublished" class="page-time">
+  2017-01-02
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
             
         </h5>
@@ -144,15 +146,17 @@
 <div class="container body-wrap">
     
 
-<article id="post-测试测试"
+<article id="post-垃圾回收"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">测试测试</h1>
+        <h1 class="post-card-title">python之垃圾回收</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-02-28 15:29:08" datetime="2018-02-28T07:29:08.000Z"  itemprop="datePublished">2018-02-28</time>
+            <time class="post-time" title="2017-01-02 22:56:34" datetime="2017-01-02T14:56:34.000Z"  itemprop="datePublished">2017-01-02</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
 
 
             
@@ -163,7 +167,12 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>测试测试测试</p>
+            <p>垃圾回收机制（GC）</p>
+<p>关于垃圾回收<br>高级语言里都采用了垃圾回收机制，而不再是C，C++里用户自己管理内存。<br>在python里采用的是引用技术机制为主，标记-清除和分代手机两种机制为辅的策略</p>
+<p>关于引用计数<br>python里每个东西都是对象，通过底层的一个方法对当前对象的引用进行计数,当一个对象有新的引用的时候，它的计数就会增加，当引用它的对象被删除，它的引用计数就减少，当引用计数为0的时候，该对象生命就结束了。</p>
+<p>优点：<br>1，简单<br>2，实时性：一旦没有引用，内存就直接释放了。不用想其他机制等待特定时机，实时性带来的另外一个好处，处理回收内存的时间分摊了，不会等到特定时间做特定的事情。</p>
+<p>缺点：<br>1，维护引用计数消耗资源<br>2，循环引用的问题，已经通过隔代回收的方式进行了处理，首先创建对象之后在特定时间会进行检测2个对象之间是否在进行相互引用，如果是则进行回收。然后把没被清除的对象移动到下个数据链中。然后继续进行在特定时间进行检测。</p>
+<p>更底层的进行垃圾回收管理需要引入gc模块进行管理，这里就不进行深入理解了。</p>
 
         </div>
 
@@ -172,12 +181,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-02-28T07:29:31.326Z" itemprop="dateUpdated">2018-02-28 15:29:31</time>
+    最后更新时间：<time datetime="2017-12-17T04:46:13.530Z" itemprop="dateUpdated">2017-12-17 12:46:13</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/02/28/测试测试/" target="_blank" rel="external">http://yoursite.com/2018/02/28/测试测试/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/01/02/垃圾回收/" target="_blank" rel="external">http://yoursite.com/2017/01/02/垃圾回收/</a>
         
     </div>
     
@@ -198,6 +207,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/垃圾回收/">垃圾回收</a></li></ul>
+
 
             
 
@@ -206,14 +217,21 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/10/集合/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">python之集合</h4>
+      </a>
+    </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/02/28/hello-world/" id="post-next" class="post-nav-link">
+      <a href="/2017/01/01/深拷贝和浅拷贝/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Hello World</h4>
+        <h4 class="title">深入python之浅拷贝和深拷贝</h4>
       </a>
     </div>
   
