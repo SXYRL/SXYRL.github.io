@@ -137,11 +137,11 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-等号和is"
+            <article id="post-property"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+        <time class="post-time" title="2017-03-12 00:00:00" datetime="2017-03-11T16:00:00.000Z"  itemprop="datePublished">2017-03-12</time>
 
         
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
@@ -155,7 +155,65 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/等号和is/">python之==和is</a>
+      <a class="post-title-link" href="/2017/03/12/property/">python之property</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        在工作中，在绑定属性的时候，如果我们直接把属性写成全局的，虽然写起来比较简单，但是容易被随便修改，不符合逻辑，这时就需要把该属性进行限制，改成私有属性，通过内部方法进行调用或者修改以及检测
+
+例子：
+
+
+class Test(object):
+    def __init__(self):
+        self.__num = 100
+
+
+    def getNum(self):
+  ...
+    
+
+        <a href="/2017/03/12/property/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/property/">property</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-等号和is"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-03-11 00:00:00" datetime="2017-03-10T16:00:00.000Z"  itemprop="datePublished">2017-03-11</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/03/11/等号和is/">python之==和is</a>
     </h3>
   
 
@@ -178,7 +236,7 @@ True
 &gt;&gt;&gt;b = [1...
     
 
-        <a href="/2017/09/10/等号和is/" class="post-more waves-effect waves-button">
+        <a href="/2017/03/11/等号和is/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -194,11 +252,11 @@ True
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-集合"
+            <article id="post-getattribute属性"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-09-10 11:13:01" datetime="2017-09-10T03:13:01.000Z"  itemprop="datePublished">2017-09-10</time>
+        <time class="post-time" title="2017-03-11 00:00:00" datetime="2017-03-10T16:00:00.000Z"  itemprop="datePublished">2017-03-11</time>
 
         
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
@@ -212,7 +270,7 @@ True
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/10/集合/">python之集合</a>
+      <a class="post-title-link" href="/2017/03/11/getattribute属性/">python之内建函数</a>
     </h3>
   
 
@@ -222,18 +280,21 @@ True
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        定义：python的set和其他语言类似, 是一个无序不重复元素集, 基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交), difference(差)和sysmmetric difference(对称差集)等数学运算.  
-sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，sets不记...
+        1，map函数
+定义：map函数会根据提供的函数对指定序列做映射，生成新的列表
+map(function,sequence[,sequence,…]) &gt;&gt;list
+function是一个函数sequence是一个或者多个学列，取决于function需要几个参数python3中返回的是map对象，需要迭代才能获取对象中的值，可以在外面转换成list对象
+参数学列中的每一个元素分别...
     
 
-        <a href="/2017/09/10/集合/" class="post-more waves-effect waves-button">
+        <a href="/2017/03/11/getattribute属性/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/set集合/">set集合</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内建函数/">内建函数</a></li></ul>
 
     </div>
     
@@ -242,11 +303,11 @@ sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-垃圾回收"
+            <article id="post-常用模块"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-01-02 22:56:34" datetime="2017-01-02T14:56:34.000Z"  itemprop="datePublished">2017-01-02</time>
+        <time class="post-time" title="2017-03-10 00:00:00" datetime="2017-03-09T16:00:00.000Z"  itemprop="datePublished">2017-03-10</time>
 
         
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
@@ -260,7 +321,7 @@ sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/01/02/垃圾回收/">python之垃圾回收</a>
+      <a class="post-title-link" href="/2017/03/10/常用模块/">python之常用模块块</a>
     </h3>
   
 
@@ -270,75 +331,18 @@ sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        垃圾回收机制（GC）
-关于垃圾回收高级语言里都采用了垃圾回收机制，而不再是C，C++里用户自己管理内存。在python里采用的是引用技术机制为主，标记-清除和分代手机两种机制为辅的策略
-关于引用计数python里每个东西都是对象，通过底层的一个方法对当前对象的引用进行计数,当一个对象有新的引用的时候，它的计数就会增加，当引用它的对象被删除，它的引用计数就减少，当引用计数为0的时候，该对象生命...
+        python有一套很有用的标准库，标准库会随着python解释器，一起安装在你的电脑中的。它是python的一个组成部分，这些标准库是Python为你准备好的利器，可以让编程事半功倍。
+            标准库        说明                builtins        内建函数默认加载                os        操作系统接口       ...
     
 
-        <a href="/2017/01/02/垃圾回收/" class="post-more waves-effect waves-button">
+        <a href="/2017/03/10/常用模块/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/垃圾回收/">垃圾回收</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-深拷贝和浅拷贝"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-01-01 11:13:01" datetime="2017-01-01T03:13:01.000Z"  itemprop="datePublished">2017-01-01</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/01/01/深拷贝和浅拷贝/">深入python之浅拷贝和深拷贝</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        关于python中的浅拷贝和深拷贝在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象：
-例：&gt;&gt;&gt;a = [1,2,3]
-&gt;&gt;&gt;b = a
-#打印a的内存地址    
-&gt;&gt;&gt;id(a)
-45817096
-#打印b的内存地址
-&gt;&gt;&gt;id(b)
-45817096
-#这里...
-    
-
-        <a href="/2017/01/01/深拷贝和浅拷贝/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块-copy/">模块 copy</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常用模块/">常用模块</a></li></ul>
 
     </div>
     
