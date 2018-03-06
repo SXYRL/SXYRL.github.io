@@ -13,25 +13,21 @@
     
     
     
-    <title>python之进程的创建 | 闫瑞龙的个人博客</title>
+    <title>归档: 2017/4 | 闫瑞龙的个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#00a0e6">
     
     
-    <meta name="keywords" content="进程">
-    <meta name="description" content="1，进程和程序 编写完毕的代码，在没有运行的时候，称之为程序正在运行着的代码，就成为进程进程，除了包含代码以外，还有需要运行的环境等，所以和程序是有区别的 2，fork()">
-<meta name="keywords" content="进程">
-<meta property="og:type" content="article">
-<meta property="og:title" content="python之进程的创建">
-<meta property="og:url" content="http://yoursite.com/2017/03/18/进程的创建fork/index.html">
+    <meta name="keywords" content="全栈开发">
+    <meta name="keywords" content="全栈开发">
+<meta property="og:type" content="website">
+<meta property="og:title" content="闫瑞龙的个人博客">
+<meta property="og:url" content="http://yoursite.com/archives/2017/04/index.html">
 <meta property="og:site_name" content="闫瑞龙的个人博客">
-<meta property="og:description" content="1，进程和程序 编写完毕的代码，在没有运行的时候，称之为程序正在运行着的代码，就成为进程进程，除了包含代码以外，还有需要运行的环境等，所以和程序是有区别的 2，fork()">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-01T14:04:53.704Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python之进程的创建">
-<meta name="twitter:description" content="1，进程和程序 编写完毕的代码，在没有运行的时候，称之为程序正在运行着的代码，就成为进程进程，除了包含代码以外，还有需要运行的环境等，所以和程序是有区别的 2，fork()">
+<meta name="twitter:title" content="闫瑞龙的个人博客">
     
         <link rel="alternate" type="application/atom+xml" title="闫瑞龙的个人博客" href="/atom.xml">
     
@@ -47,7 +43,7 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu"  >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -73,7 +69,7 @@
               </a>
             </li>
         
-            <li class="waves-block waves-effect">
+            <li class="waves-block waves-effect active">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 归档
@@ -105,7 +101,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">python之进程的创建</div>
+        <div class="flex-col header-title ellipsis">归档</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -120,19 +116,11 @@
         
     </div>
 </header>
-<header class="content-header post-header">
+<header class="content-header archives-header">
 
     <div class="container fade-scale">
-        <h1 class="title">python之进程的创建</h1>
+        <h1 class="title">归档</h1>
         <h5 class="subtitle">
-            
-                <time datetime="2017-03-17T16:00:00.000Z" itemprop="datePublished" class="page-time">
-  2017-03-18
-</time>
-
-
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
             
         </h5>
     </div>
@@ -142,135 +130,119 @@
 
 </header>
 
-
-<div class="container body-wrap">
+<div class="container body-wrap fade">
     
 
-<article id="post-进程的创建fork"
-  class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title">python之进程的创建</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2017-03-18 00:00:00" datetime="2017-03-17T16:00:00.000Z"  itemprop="datePublished">2017-03-18</time>
-
+    
             
+            <h3 class="archive-separator">四月, 2017</h3>
+            <div class="waterfall">
+    
+
+        <div class="waterfall-item">
+  <article class="article-card archive-article">
+    <div class="post-meta">
+      <time class="post-time" title="2017-04-04 00:00:00" datetime="2017-04-03T16:00:00.000Z"  itemprop="datePublished">2017-04-04</time>
+
+      
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
 
 
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <p>1，进程和程序</p>
-<p>编写完毕的代码，在没有运行的时候，称之为程序<br>正在运行着的代码，就成为进程<br>进程，除了包含代码以外，还有需要运行的环境等，所以和程序是有区别的</p>
-<p>2，fork() </p>
-
-        </div>
-
-        <blockquote class="post-copyright">
-    
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2018-03-01T14:04:53.704Z" itemprop="dateUpdated">2018-03-01 22:04:53</time>
-</span><br>
-
-
-        
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/03/18/进程的创建fork/" target="_blank" rel="external">http://yoursite.com/2017/03/18/进程的创建fork/</a>
-        
     </div>
     
-    <footer>
-        <a href="http://yoursite.com">
-            <img src="/img/avatar.jpg" alt="闫瑞龙">
-            闫瑞龙
-        </a>
-    </footer>
-</blockquote>
 
-        
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
-
-
-
-        <div class="post-footer">
-            
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/进程/">进程</a></li></ul>
-
-
-            
-
-
-        </div>
-    </div>
-
-    
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2017/03/19/垃圾回收/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">python之垃圾回收</h4>
-      </a>
-    </div>
-  
 
   
-    <div class="waves-block waves-effect next">
-      <a href="/2017/03/17/集合/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">python之集合</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</article>
-
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        谢谢大爷~
-        <i class="icon icon-quote-right"></i>
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/04/04/服务器动态资源请求/">服务器动态资源请求</a>
     </h3>
-    <div class="reward-content">
+  
+
+
+
+    
+    <div class="post-footer">
         
-        <div class="reward-code">
-            <img id="rewardCode" src="/" alt="打赏二维码">
-        </div>
-        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/服务器/">服务器</a></li></ul>
+
     </div>
+    
+  </article>
 </div>
 
+    
+
+        <div class="waterfall-item">
+  <article class="article-card archive-article">
+    <div class="post-meta">
+      <time class="post-time" title="2017-04-03 00:00:00" datetime="2017-04-02T16:00:00.000Z"  itemprop="datePublished">2017-04-03</time>
+
+      
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
 
+
+    </div>
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/04/03/python进程和线程1/">python进程和线程1</a>
+    </h3>
+  
+
+
+
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/进程-线程/">进程 线程</a></li></ul>
+
+    </div>
+    
+  </article>
+</div>
+
+    
+
+        <div class="waterfall-item">
+  <article class="article-card archive-article">
+    <div class="post-meta">
+      <time class="post-time" title="2017-04-02 00:00:00" datetime="2017-04-01T16:00:00.000Z"  itemprop="datePublished">2017-04-02</time>
+
+      
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+    </div>
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/04/02/Python之线程、进程和协程2/">Python之线程、进程和协程2</a>
+    </h3>
+  
+
+
+
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/进程-线程/">进程 线程</a></li></ul>
+
+    </div>
+    
+  </article>
+</div>
+
+    
+    </div>
+
+    
 </div>
 
         <footer class="footer">
@@ -312,7 +284,7 @@
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
 
 
 </script>

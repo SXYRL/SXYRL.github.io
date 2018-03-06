@@ -13,25 +13,25 @@
     
     
     
-    <title>python之内建函数 | 闫瑞龙的个人博客</title>
+    <title>深入python之浅拷贝和深拷贝 | 闫瑞龙的个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#00a0e6">
     
     
-    <meta name="keywords" content="内建函数">
-    <meta name="description" content="1，map函数 定义：map函数会根据提供的函数对指定序列做映射，生成新的列表 map(function,sequence[,sequence,…]) &amp;gt;&amp;gt;list function是一个函数sequence是一个或者多个学列，取决于function需要几个参数python3中返回的是map对象，需要迭代才能获取对象中的值，可以在外面转换成list对象 参数学列中的每一个元素分别调用f">
-<meta name="keywords" content="内建函数">
+    <meta name="keywords" content="模块 copy">
+    <meta name="description" content="关于python中的浅拷贝和深拷贝在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象： 例：&amp;gt;&amp;gt;&amp;gt;a = [1,2,3] &amp;gt;&amp;gt;&amp;gt;b = a #打印a的内存地址     &amp;gt;&amp;gt;&amp;gt;id(a) 45817096 #打印b的内存地址 &amp;gt;&amp;gt;&amp;gt;id(b) 45817096 #这里的a和">
+<meta name="keywords" content="模块 copy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python之内建函数">
-<meta property="og:url" content="http://yoursite.com/2017/03/11/getattribute属性/index.html">
+<meta property="og:title" content="深入python之浅拷贝和深拷贝">
+<meta property="og:url" content="http://yoursite.com/2017/03/23/深拷贝和浅拷贝/index.html">
 <meta property="og:site_name" content="闫瑞龙的个人博客">
-<meta property="og:description" content="1，map函数 定义：map函数会根据提供的函数对指定序列做映射，生成新的列表 map(function,sequence[,sequence,…]) &amp;gt;&amp;gt;list function是一个函数sequence是一个或者多个学列，取决于function需要几个参数python3中返回的是map对象，需要迭代才能获取对象中的值，可以在外面转换成list对象 参数学列中的每一个元素分别调用f">
+<meta property="og:description" content="关于python中的浅拷贝和深拷贝在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象： 例：&amp;gt;&amp;gt;&amp;gt;a = [1,2,3] &amp;gt;&amp;gt;&amp;gt;b = a #打印a的内存地址     &amp;gt;&amp;gt;&amp;gt;id(a) 45817096 #打印b的内存地址 &amp;gt;&amp;gt;&amp;gt;id(b) 45817096 #这里的a和">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-01T14:13:22.233Z">
+<meta property="og:updated_time" content="2018-03-06T12:56:44.983Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python之内建函数">
-<meta name="twitter:description" content="1，map函数 定义：map函数会根据提供的函数对指定序列做映射，生成新的列表 map(function,sequence[,sequence,…]) &amp;gt;&amp;gt;list function是一个函数sequence是一个或者多个学列，取决于function需要几个参数python3中返回的是map对象，需要迭代才能获取对象中的值，可以在外面转换成list对象 参数学列中的每一个元素分别调用f">
+<meta name="twitter:title" content="深入python之浅拷贝和深拷贝">
+<meta name="twitter:description" content="关于python中的浅拷贝和深拷贝在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象： 例：&amp;gt;&amp;gt;&amp;gt;a = [1,2,3] &amp;gt;&amp;gt;&amp;gt;b = a #打印a的内存地址     &amp;gt;&amp;gt;&amp;gt;id(a) 45817096 #打印b的内存地址 &amp;gt;&amp;gt;&amp;gt;id(b) 45817096 #这里的a和">
     
         <link rel="alternate" type="application/atom+xml" title="闫瑞龙的个人博客" href="/atom.xml">
     
@@ -105,7 +105,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">python之内建函数</div>
+        <div class="flex-col header-title ellipsis">深入python之浅拷贝和深拷贝</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -123,11 +123,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">python之内建函数</h1>
+        <h1 class="title">深入python之浅拷贝和深拷贝</h1>
         <h5 class="subtitle">
             
-                <time datetime="2017-03-10T16:00:00.000Z" itemprop="datePublished" class="page-time">
-  2017-03-11
+                <time datetime="2017-03-22T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-03-23
 </time>
 
 
@@ -145,14 +145,21 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#关于python中的浅拷贝和深拷贝"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于python中的浅拷贝和深拷贝</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#例："><span class="post-toc-number">2.</span> <span class="post-toc-text">例：</span></a></li></ol>
+        </nav>
+    </aside>
 
-<article id="post-getattribute属性"
+
+<article id="post-深拷贝和浅拷贝"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">python之内建函数</h1>
+        <h1 class="post-card-title">深入python之浅拷贝和深拷贝</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017-03-11 00:00:00" datetime="2017-03-10T16:00:00.000Z"  itemprop="datePublished">2017-03-11</time>
+            <time class="post-time" title="2017-03-23 00:00:00" datetime="2017-03-22T16:00:00.000Z"  itemprop="datePublished">2017-03-23</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
@@ -167,52 +174,121 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>1，map函数</p>
-<p>定义：map函数会根据提供的函数对指定序列做映射，生成新的列表</p>
-<p>map(function,sequence[,sequence,…]) &gt;&gt;list</p>
-<p>function是一个函数<br>sequence是一个或者多个学列，取决于function需要几个参数<br>python3中返回的是map对象，需要迭代才能获取对象中的值，可以在外面转换成list对象</p>
-<p>参数学列中的每一个元素分别调用function函数，返回包含每次function函数返回的map对象</p>
-<p>例1：<br>    &gt;&gt;&gt; k = map(lambda x:x*x, [1,2,3])<br>    &gt;&gt;&gt; k<br>    <map object="" at="" 0x0000000002dc7eb8=""><br>    &gt;&gt;&gt; for i in k:<br>        print(i)</map></p>
-<pre><code>1
-4
-9
-&gt;&gt;&gt; k =list(map(lambda x:x*x, [1,2,3]))
-&gt;&gt;&gt; k 
-1
-4
-9
-</code></pre><p>例2：</p>
-<pre><code>#函数需要2个参数的情况
-&gt;&gt;&gt; m = list(map(lambda x,y:x+y,[1,2,3],[4,5,6]))
-&gt;&gt;&gt; m
-[5, 7, 9]
-</code></pre><p>例3：<br>上面两个例子都是用匿名函数的方式，下面来看不使用匿名函数的方式：<br>    &gt;&gt;&gt; def f1(x,y):<br>        return (x,y)</p>
-<pre><code>&gt;&gt;&gt; a1 = [1,2,3,4,5,6]
-&gt;&gt;&gt; a2 = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;]
-&gt;&gt;&gt; list(map(f1,a1,a2))
-[(1, &apos;a&apos;), (2, &apos;b&apos;), (3, &apos;c&apos;), (4, &apos;d&apos;), (5, &apos;e&apos;), (6, &apos;f&apos;)]
-</code></pre><p>2，filter</p>
-<p>定义：filter函数会对制定序列执行过滤、筛选操作</p>
-<pre><code>filter(function or None,squence)&gt;&gt;&gt;list,tuple,or string
+            <h1 id="关于python中的浅拷贝和深拷贝"><a href="#关于python中的浅拷贝和深拷贝" class="headerlink" title="关于python中的浅拷贝和深拷贝"></a>关于python中的浅拷贝和深拷贝</h1><p>在Python中，首先要讲的就是等号赋值了，其实这种拷贝只是给源对象新增一个标签而已，指向的还是同一个对象：</p>
+<h1 id="例："><a href="#例：" class="headerlink" title="例："></a>例：</h1><pre><code>&gt;&gt;&gt;a = [1,2,3]
+&gt;&gt;&gt;b = a
+#打印a的内存地址    
+&gt;&gt;&gt;id(a)
+45817096
+#打印b的内存地址
+&gt;&gt;&gt;id(b)
+45817096
+#这里的a和b指向的是同一个对象
+</code></pre><p>接下来就是我们要讲的浅拷贝和深拷贝，实现深浅拷贝首先需要引入copy模块:</p>
+<p>1：浅拷贝,使用copy模块下的copy()方法实现：</p>
+<pre><code>&gt;&gt;&gt;import copy
 
-function:接受一个参数，返回布尔值True或False
-sequence:序列可以是str,tuple,list
-</code></pre><p>filter函数会对序列参数sequence中的每个元素调用function函数，最后返回的结果包含调用结果为True的元素。<br>返回值的类型和参数sequence的类型相同</p>
-<p>例1：<br>    &gt;&gt;&gt; list(filter(lambda x:x%2,[1,2,3,4,5,6,7,8]))<br>    [1, 3, 5, 7]</p>
-<p>3，sorted函数</p>
-<p>定义：对参数进行排序返回新的列表，如果是字母则通过ASII码进行排序<br>    例1：正序排序<br>    &gt;&gt;&gt; sorted([1,2,3,5,3,12,4,1234,34,343])<br>    [1, 2, 3, 3, 4, 5, 12, 34, 343, 1234]</p>
-<pre><code>例2：倒序排序
-&gt;&gt;&gt; sorted([4,66,1,65,23,8,5,],reverse = True)
-[66, 65, 23, 8, 5, 4, 1]
+&gt;&gt;&gt;a = [1,2,3,4]
 
-例3：字母排序
+&gt;&gt;&gt;b = copy.copy(a)
 
-&gt;&gt;&gt; sorted([&apos;a&apos;,&apos;c&apos;,&apos;e&apos;,&apos;b&apos;,&apos;f&apos;])
-[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;e&apos;, &apos;f&apos;]
-#如果是单词的话会通过它们首字母的asii码进行排序
-&gt;&gt;&gt; sorted([&apos;hello&apos;,&apos;world&apos;,&apos;name&apos;,&apos;args&apos;])
-[&apos;args&apos;, &apos;hello&apos;, &apos;name&apos;, &apos;world&apos;]
-</code></pre>
+&gt;&gt;&gt; id(a)
+47818184
+
+&gt;&gt;&gt; id(b)
+47856904
+
+# 在这里我们发现b和a的内存地址不同，相当于复制一份新的列表[1,2,3,4]给了b,如果现在修改a的值，b的值不会随之变化：
+
+&gt;&gt;&gt; a.append(10)
+
+&gt;&gt;&gt; a
+
+[1, 2, 3, 4, 10]
+
+&gt;&gt;&gt; b
+[1, 2, 3, 4]
+
+
+# 我们接着往下走：
+
+&gt;&gt;&gt; aa = [1,2,3,[&apos;a&apos;,&apos;b&apos;]]
+
+&gt;&gt;&gt; bb = copy.copy(aa)
+
+&gt;&gt;&gt; id(aa)
+47914120
+
+&gt;&gt;&gt; id(bb)
+47697096
+
+# 接着我们继续输出列表嵌套内的列表的内存地址
+&gt;&gt;&gt; id(aa[3])
+47696776
+
+&gt;&gt;&gt; id(bb[3])
+47696776
+# 在这里我们发现内部嵌套的列表的内存地址是相同的，这里就说明了浅拷贝仅仅只是拷贝了父对象，而不会拷贝扶对象内部的子对象
+</code></pre><p>2：深拷贝，使用copy模块下的deepcopy()方法实现：</p>
+<pre><code>&gt;&gt;&gt;import copy
+
+&gt;&gt;&gt;a = [1,2,3,4]
+
+&gt;&gt;&gt;b = copy.deepcopy(a)
+
+&gt;&gt;&gt; id(a)
+47818184
+
+&gt;&gt;&gt; id(b)
+47856904
+#这里可以看到，如果当前拷贝对象没有子对象的时候，copy()和deep()没有区别
+#接着往下看：
+
+&gt;&gt;&gt; a = [1,2,3,4,[&apos;x&apos;,&apos;y&apos;]]
+
+&gt;&gt;&gt; b = copy.deepcopy()
+
+&gt;&gt;&gt; id(a[4])
+47733896
+
+&gt;&gt;&gt; id(b[4])
+47914056
+#这里我们发现，深拷贝会拷贝当前对象及其子对象，不论父对象嵌套多少子对象都会进行完全拷贝
+</code></pre><p>我们发现，刚才举例的时候只是用到了列表，实际工作中用到的不止有列表这么一种数据类型，我们不妨试一下其他的类型，比如试一试元祖：</p>
+<pre><code>&gt;&gt;&gt; a = (1,2,3,4,[&apos;aa&apos;,&apos;bb&apos;])
+&gt;&gt;&gt; b = copy.copy(a)
+
+&gt;&gt;&gt; id(a)
+45195112
+
+&gt;&gt;&gt; id(b)
+45195112
+
+&gt;&gt;&gt; id(a[4])
+46124808
+
+&gt;&gt;&gt; id(b[4])
+46124808
+#这里我们发现浅拷贝元祖的时候父对象也没有实现拷贝，还是指向了原来对象的内存地址
+
+&gt;&gt;&gt; c = copy.deepcopy(a)
+&gt;&gt;&gt; id(c)
+45853160
+
+&gt;&gt;&gt; id(c[4])
+46169224
+
+&gt;&gt;&gt; id(a[4])
+46124808
+#而深拷贝还是一如既往的一致，父对象和子对象都进行了拷贝
+#其实这里python默认帮我们进行了类型检测，如果是不可变类型则无法进行浅拷贝，只可以执行深拷贝，这个需要重点记忆，工作中可能就莫名出现此类BUG；
+</code></pre><p>小结：</p>
+<ol>
+<li>copy.copy() 浅拷贝 只拷贝父对象，不会拷贝对象的内部的子对象。 </li>
+<li>copy.deepcopy() 深拷贝 拷贝对象及其子对象 </li>
+<li>如果拷贝的类型是不可变类型的时候，浅拷贝不会拷贝父对象，只有深拷贝会执行拷贝</li>
+</ol>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -220,12 +296,12 @@ sequence:序列可以是str,tuple,list
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-03-01T14:13:22.233Z" itemprop="dateUpdated">2018-03-01 22:13:22</time>
+    最后更新时间：<time datetime="2018-03-06T12:56:44.983Z" itemprop="dateUpdated">2018-03-06 20:56:44</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/03/11/getattribute属性/" target="_blank" rel="external">http://yoursite.com/2017/03/11/getattribute属性/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/03/23/深拷贝和浅拷贝/" target="_blank" rel="external">http://yoursite.com/2017/03/23/深拷贝和浅拷贝/</a>
         
     </div>
     
@@ -246,7 +322,7 @@ sequence:序列可以是str,tuple,list
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内建函数/">内建函数</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块-copy/">模块 copy</a></li></ul>
 
 
             
@@ -259,18 +335,18 @@ sequence:序列可以是str,tuple,list
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2017/03/11/等号和is/" id="post-prev" class="post-nav-link">
+      <a href="/2017/03/24/装饰器/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">python之==和is</h4>
+        <h4 class="title">python之装饰器</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2017/03/10/常用模块/" id="post-next" class="post-nav-link">
+      <a href="/2017/03/22/内建函数/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">python之常用模块块</h4>
+        <h4 class="title">python之内建函数</h4>
       </a>
     </div>
   
