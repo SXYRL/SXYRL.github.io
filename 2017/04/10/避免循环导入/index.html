@@ -13,21 +13,25 @@
     
     
     
-    <title>闫瑞龙的个人博客</title>
+    <title>如何避免循环导入 | 闫瑞龙的个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#00a0e6">
     
     
-    <meta name="keywords" content="全栈开发">
-    <meta name="keywords" content="全栈开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="闫瑞龙的个人博客">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+    <meta name="keywords" content="模块">
+    <meta name="description" content="1，什么是循环导入 a.py      from b import b       print &amp;apos;---------this is module a.py----------&amp;apos;     def a():         print(&amp;quot;hello, a&amp;quot;)         b()       a()   b.py      from a import a">
+<meta name="keywords" content="模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何避免循环导入">
+<meta property="og:url" content="http://yoursite.com/2017/04/10/避免循环导入/index.html">
 <meta property="og:site_name" content="闫瑞龙的个人博客">
+<meta property="og:description" content="1，什么是循环导入 a.py      from b import b       print &amp;apos;---------this is module a.py----------&amp;apos;     def a():         print(&amp;quot;hello, a&amp;quot;)         b()       a()   b.py      from a import a">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-08T15:08:16.099Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="闫瑞龙的个人博客">
+<meta name="twitter:title" content="如何避免循环导入">
+<meta name="twitter:description" content="1，什么是循环导入 a.py      from b import b       print &amp;apos;---------this is module a.py----------&amp;apos;     def a():         print(&amp;quot;hello, a&amp;quot;)         b()       a()   b.py      from a import a">
     
         <link rel="alternate" type="application/atom+xml" title="闫瑞龙的个人博客" href="/atom.xml">
     
@@ -43,7 +47,7 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -101,7 +105,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">闫瑞龙的个人博客</div>
+        <div class="flex-col header-title ellipsis">如何避免循环导入</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -116,13 +120,19 @@
         
     </div>
 </header>
-<header class="content-header index-header">
+<header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">闫瑞龙的个人博客</h1>
+        <h1 class="title">如何避免循环导入</h1>
         <h5 class="subtitle">
             
-                
+                <time datetime="2017-04-09T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-04-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
             
         </h5>
     </div>
@@ -132,170 +142,196 @@
 
 </header>
 
+
 <div class="container body-wrap">
-
-    <ul class="post-list">
     
-        <li class="post-list-item fade">
-            <article id="post-迭代、列表生成式和生成器"
-  class="article-card article-type-post" itemprop="blogPost">
 
-    <div class="post-meta">
-        <time class="post-time" title="2017-03-14 00:00:00" datetime="2017-03-13T16:00:00.000Z"  itemprop="datePublished">2017-03-14</time>
+<article id="post-避免循环导入"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
-        
+    <div class="post-card">
+        <h1 class="post-card-title">如何避免循环导入</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-10 00:00:00" datetime="2017-04-09T16:00:00.000Z"  itemprop="datePublished">2017-04-10</time>
+
+            
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
 
 
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>1，什么是循环导入</p>
+<pre><code>a.py
+
+    from b import b 
+
+    print &apos;---------this is module a.py----------&apos;
+    def a():
+        print(&quot;hello, a&quot;)
+        b() 
+
+    a()
+
+
+b.py
+
+    from a import a
+
+    print &apos;----------this is module b.py----------&apos;
+    def b():
+        print(&quot;hello, b&quot;)
+
+    def c():
+        a() 
+    c()
+
+
+运行pyhon a.py
+
+        Traceback (most recent call last):
+          File &quot;a.py&quot;, line 1, in &lt;module&gt;
+            from b import b 
+          File &quot;/home/yan/py_demo/01-python高级-1/b.py&quot;, line 1, in &lt;module&gt;
+            from a import a
+          File &quot;/home/yan/py_demo/01-python高级-1/a.py&quot;, line 1, in &lt;module&gt;
+            from b import b 
+        ImportError: cannot import name b
+</code></pre><ol>
+<li><p>怎样避免循环导入</p>
+<p> 1,例如放在函数体内导入</p>
+<p> a.py</p>
+<pre><code>print(&apos;---------this is module a.py----------&apos;)
+
+def a():
+    print(&quot;hello, a&quot;)
+    from b import b
+    b()
+
+a()
+</code></pre></li>
+</ol>
+<pre><code>b.py
+
+
+    print(&apos;----------this is module b.py----------&apos;)
+
+    def b():
+        print(&quot;hello, b&quot;)
+
+    def c():
+        from a import a
+        a()
+
+    c()
+
+
+2，程序设计上分层，降低耦合
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-03-08T15:08:16.099Z" itemprop="dateUpdated">2018-03-08 23:08:16</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/04/10/避免循环导入/" target="_blank" rel="external">http://yoursite.com/2017/04/10/避免循环导入/</a>
+        
     </div>
-
     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/03/14/迭代、列表生成式和生成器/">python迭代、列表生成式和生成器</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        转载自廖雪峰官网：1,迭代
-如果给定一个list或tuple等可迭代对象，我们可以通过for循环来遍历这些可迭代对象，这种遍历我们称为迭代
-在python中，迭代是通过for in来完成的。
-list这种数据类型虽然有下标，但很多其他数据类型是没有下标的，但是，只要是可迭代对象，无论有无下标，都可以迭代，比如dict就可以迭代：
-dicts  = {&apos;a&apos;:1,&apos...
-    
-
-        <a href="/2017/03/14/迭代、列表生成式和生成器/" class="post-more waves-effect waves-button">
-            阅读全文…
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="闫瑞龙">
+            闫瑞龙
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/迭代-列表生成式-生成器-yieid/">迭代 列表生成式 生成器 yieid</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-闭包"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-03-13 00:00:00" datetime="2017-03-12T16:00:00.000Z"  itemprop="datePublished">2017-03-13</time>
+    </footer>
+</blockquote>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
 
 
 
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块/">模块</a></li></ul>
+
+
+            
+
+
+        </div>
     </div>
 
     
-
-
+<nav class="post-nav flex-row flex-justify-between">
   
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/03/13/闭包/">python之闭包</a>
-    </h3>
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/11/作用域/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">作用域</h4>
+      </a>
+    </div>
   
 
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        如果在一个函数的内部定义了另一个函数，外部的我们叫他外函数，内部的我们叫他内函数。
-闭包三要素： 
-  1，在一个外函数中定义了一个内函数，
-  2，内函数里运用了外函数的临时变量，
-  3，并且外函数的返回值是内函数的引用。
-这样就构成了一个闭包。
-一般情况下，在我们认知当中，如果一个函数结束，函数的内部所有东西都会释放掉，还给内存，局部变量都会消失。但是闭包是一种特殊情况，如果外函数在结...
-    
-
-        <a href="/2017/03/13/闭包/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-常用模块"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-03-10 00:00:00" datetime="2017-03-09T16:00:00.000Z"  itemprop="datePublished">2017-03-10</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
   
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/03/10/常用模块/">python之常用模块块</a>
-    </h3>
+    <div class="waves-block waves-effect next">
+      <a href="/2017/04/07/模块导入/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">模块导入</h4>
+      </a>
+    </div>
   
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        python有一套很有用的标准库，标准库会随着python解释器，一起安装在你的电脑中的。它是python的一个组成部分，这些标准库是Python为你准备好的利器，可以让编程事半功倍。
-            标准库        说明                builtins        内建函数默认加载                os        操作系统接口       ...
-    
-
-        <a href="/2017/03/10/常用模块/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常用模块/">常用模块</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-    </ul>
-
-    
-<nav id="page-nav">
-    <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </div>
 </nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
 
 
 </div>
@@ -339,7 +375,7 @@ dicts  = {&apos;a&apos;:1,&apos...
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
 
 
 </script>

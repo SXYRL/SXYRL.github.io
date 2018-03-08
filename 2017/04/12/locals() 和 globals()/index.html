@@ -13,25 +13,25 @@
     
     
     
-    <title>No title | 闫瑞龙的个人博客</title>
+    <title>python 中locals() 和 globals() | 闫瑞龙的个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#00a0e6">
     
     
-    <meta name="keywords" content="">
-    <meta name="description" content="title: 作用域date: 2017-04-07tags: 作用域 内建函数  categories: pythonLEGB原则  python中作用域有四种：    L （Local） 局部作用域   E （Enclosing） 闭包函数外的函数中   G （Global） 全局作用域   B （Built-in） 内建作用域   python按照LEGB原则搜索变量，即优先级L&amp;gt;E">
-<meta name="keywords" content="全栈开发">
+    <meta name="keywords" content="内置函数">
+    <meta name="description" content="1、locals() 和 globals() 是python 的内建函数，他们提供了字典的形式访问局部变量和全局变量的方式。 def test(arg):     a=1     b=2     data_dict = {}     print locals()     print globals()   if __name__ == &amp;apos;__main__&amp;apos;:     test(">
+<meta name="keywords" content="内置函数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="No title">
-<meta property="og:url" content="http://yoursite.com/2018/03/08/作用域/index.html">
+<meta property="og:title" content="python 中locals() 和 globals()">
+<meta property="og:url" content="http://yoursite.com/2017/04/12/locals() 和 globals()/index.html">
 <meta property="og:site_name" content="闫瑞龙的个人博客">
-<meta property="og:description" content="title: 作用域date: 2017-04-07tags: 作用域 内建函数  categories: pythonLEGB原则  python中作用域有四种：    L （Local） 局部作用域   E （Enclosing） 闭包函数外的函数中   G （Global） 全局作用域   B （Built-in） 内建作用域   python按照LEGB原则搜索变量，即优先级L&amp;gt;E">
+<meta property="og:description" content="1、locals() 和 globals() 是python 的内建函数，他们提供了字典的形式访问局部变量和全局变量的方式。 def test(arg):     a=1     b=2     data_dict = {}     print locals()     print globals()   if __name__ == &amp;apos;__main__&amp;apos;:     test(">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-08T14:34:43.534Z">
+<meta property="og:updated_time" content="2018-03-08T15:10:36.192Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="No title">
-<meta name="twitter:description" content="title: 作用域date: 2017-04-07tags: 作用域 内建函数  categories: pythonLEGB原则  python中作用域有四种：    L （Local） 局部作用域   E （Enclosing） 闭包函数外的函数中   G （Global） 全局作用域   B （Built-in） 内建作用域   python按照LEGB原则搜索变量，即优先级L&amp;gt;E">
+<meta name="twitter:title" content="python 中locals() 和 globals()">
+<meta name="twitter:description" content="1、locals() 和 globals() 是python 的内建函数，他们提供了字典的形式访问局部变量和全局变量的方式。 def test(arg):     a=1     b=2     data_dict = {}     print locals()     print globals()   if __name__ == &amp;apos;__main__&amp;apos;:     test(">
     
         <link rel="alternate" type="application/atom+xml" title="闫瑞龙的个人博客" href="/atom.xml">
     
@@ -105,7 +105,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis"></div>
+        <div class="flex-col header-title ellipsis">python 中locals() 和 globals()</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -123,13 +123,15 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title"></h1>
+        <h1 class="title">python 中locals() 和 globals()</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-03-08T10:55:04.284Z" itemprop="datePublished" class="page-time">
-  2018-03-08
+                <time datetime="2017-04-11T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-04-12
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
 
             
         </h5>
@@ -143,23 +145,18 @@
 
 <div class="container body-wrap">
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#categories-python"><span class="post-toc-number">1.</span> <span class="post-toc-text">categories: python</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">python中作用域有四种：</span></a></li></ol></li></ol></li></ol></li></ol>
-        </nav>
-    </aside>
 
-
-<article id="post-作用域"
+<article id="post-locals() 和 globals()"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title"></h1>
+        <h1 class="post-card-title">python 中locals() 和 globals()</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-03-08 18:55:04" datetime="2018-03-08T10:55:04.284Z"  itemprop="datePublished">2018-03-08</time>
+            <time class="post-time" title="2017-04-12 00:00:00" datetime="2017-04-11T16:00:00.000Z"  itemprop="datePublished">2017-04-12</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
 
 
             
@@ -170,69 +167,40 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <hr>
-<p>title: 作用域<br>date: 2017-04-07<br>tags: 作用域 内建函数 </p>
-<h2 id="categories-python"><a href="#categories-python" class="headerlink" title="categories: python"></a>categories: python</h2><div style="background:#00caff;color:white;font-size:20px;font-weight:900;">LEGB原则</div>
-
-<h5>python中作用域有四种：</h5>
-
-<ul>
-
-<li>L （Local） 局部作用域 </li>
-
-<li>E （Enclosing） 闭包函数外的函数中 </li>
-
-<li>G （Global） 全局作用域 </li>
-
-<li>B （Built-in） 内建作用域</li>
+            <p>1、locals() 和 globals() 是python 的内建函数，他们提供了字典的形式访问局部变量和全局变量的方式。</p>
+<pre><code>def test(arg):
+    a=1
+    b=2
+    data_dict = {}
+    print locals()
+    print globals()
 
 
-<p>python按照LEGB原则搜索变量，即优先级L&gt;E&gt;G&gt;B。</p>
-<pre><code>dir = 1 # Global
-def outer():
-    dir = 2  # Enclosing
-    def inner():
-        dir = 3 # Local
-        return dir
-    return inner
+if __name__ == &apos;__main__&apos;:
+    test(3)
+</code></pre><p>输出为：</p>
+<pre><code>{&apos;data_dict&apos;: {}, &apos;b&apos;: 2, &apos;a&apos;: 1, &apos;arg&apos;: 3}
+{&apos;__name__&apos;: &apos;__main__&apos;, &apos;__doc__&apos;: None, &apos;__package__&apos;: None,
+ &apos;__loader__&apos;: &lt;class &apos;_frozen_importlib.BuiltinImporter&apos;&gt;,
+ &apos;__spec__&apos;: None, &apos;__annotations__&apos;: {},
+ &apos;__builtins__&apos;: &lt;module &apos;builtins&apos; (built-in)&gt;, 
+&apos;__file__&apos;: &apos;C:/Users/闫瑞龙/Desktop/demo/locals.py&apos;,
+ &apos;test&apos;: &lt;function test at 0x000001E26680C598&gt;}
+</code></pre><p>2、locals() 返回是当前局部变量的深拷贝，修改locals() 中变量值的时候，实际上对于原变量本身是没有任何影响的。而globals()返回的是全局变量的字典，修改其中的内容，值会真正的发生改变。<br>示例代码：</p>
+<pre><code>b = 5 # 定义一个全局变量
+def test2():
+    a=1
+    locals()[&quot;a&quot;] = 2  # 修改局部变量
+    print &quot;a=&quot;, a
+    globals()[&quot;b&quot;] = 6 # 修改全局变量
+    print &quot;b=&quot;, b
 
-print outer() # 输出3
-</code></pre><p>作用域（Scope）和命名空间（NameSpace）</p>
-<p>def/lambda会创建新的作用域，生成器表达式都有引入新的作用域，class的定义没有作用域，只是创建一个隔离的命名空间。在Python中，scope是由namespace按特定的层级结构组合起来的。scope一定是namespace，但namespace不一定是scope。命名空间跟作用域的区别是，它不能在里面再嵌套其他作用域。下面看两个例子。</p>
-<p>例1：</p>
-<pre><code>a = 1
-def test():
-    a += 1
-    a = 2
-
-test() #异常
-</code></pre><p>   UnboundLocalError: local variable ‘a’ referenced before assignment。这是因为解释器看到a+=1时，按照LEGB优先在Local中找到了a的声明，执行时先a+=1在a=2声明之前，所以抛出异常。</p>
-<p>例2：</p>
-<pre><code>class A(object):
-    x = 2
-    gen = (x*i for i in xrange(5))
-
-if __name__ == &quot;__main__&quot;:
-    a = A()
-    print list(a.gen)#异常
-</code></pre><p>上面的代码会抛出异常：NameError: global name ‘x’ is not defined。这是因为gen = （x for _ in xrange(5）是生成器，会产生新的作用域。而classA 中并不产生作用域。按照LEGB原则，不能找到x的定义，所以抛出异常。解决这个问题有几种方案。 </p>
-<p>1，将x定义为全局变量，这样可以解决异常，但是可能违背了类的逻辑。 </p>
-<p>2，将生成器表达式改为列表表达式。</p>
-<pre><code>gen = [x*i for i in xrange(5)]
-</code></pre><p>在python2中，列表表达式不产生新的作用域，所以不会抛出异常。但是在python3中仍有异常。 </p>
-<p>3，用A.x的方式访问类属性。</p>
-<pre><code>gen = (A.x*i for i in xrange(5))
-</code></pre><p>4，引入lambda函数，将class命名空间的x作为变量传入到匿名函数中。</p>
-<pre><code>gen = (lambda x: (x*i for i in xrange(5)))(x)
-</code></pre><p>这个问题可以理解为class不能产生作用域导致的，在函数中就没有这个问题。</p>
-<pre><code>def test():
-    x = 2
-    gen = (i * x for i in xrange(5))
-    return gen
-
-gen = test()
-print list(gen)#输出[0, 2, 4, 6, 8]
-</code></pre></ul>
+if __name__ == &apos;__main__&apos;:
+    test2()
+</code></pre><p>输出为：</p>
+<pre><code>a= 1
+b= 6
+</code></pre>
         </div>
 
         <blockquote class="post-copyright">
@@ -240,12 +208,12 @@ print list(gen)#输出[0, 2, 4, 6, 8]
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-03-08T14:34:43.534Z" itemprop="dateUpdated">2018-03-08 22:34:43</time>
+    最后更新时间：<time datetime="2018-03-08T15:10:36.192Z" itemprop="dateUpdated">2018-03-08 23:10:36</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/03/08/作用域/" target="_blank" rel="external">http://yoursite.com/2018/03/08/作用域/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/04/12/locals() 和 globals()/" target="_blank" rel="external">http://yoursite.com/2017/04/12/locals() 和 globals()/</a>
         
     </div>
     
@@ -266,6 +234,8 @@ print list(gen)#输出[0, 2, 4, 6, 8]
 
         <div class="post-footer">
             
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/内置函数/">内置函数</a></li></ul>
+
 
             
 
@@ -277,18 +247,18 @@ print list(gen)#输出[0, 2, 4, 6, 8]
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2018/03/08/locals() 和 globals()/" id="post-prev" class="post-nav-link">
+      <a href="/2017/04/13/LEGB规则/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">[no title]</h4>
+        <h4 class="title">LEGB规则</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/03/08/避免循环导入/" id="post-next" class="post-nav-link">
+      <a href="/2017/04/11/作用域/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">[no title]</h4>
+        <h4 class="title">作用域</h4>
       </a>
     </div>
   
