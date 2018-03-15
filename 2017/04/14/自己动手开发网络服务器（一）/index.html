@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>自己动手开发网络服务器（一） | 闫瑞龙的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#00a0e6">
+    
+    
+    <meta name="keywords" content="服务器">
+    <meta name="description" content="————————————————————————————————————————————————— 原文链接：http://ruslanspivak.com/lsbaws-part1/  译文链接：http://codingpy.com/article/build-a-simple-web-server-part-one/ 有一天，一位女士散步时经过一个工地，看见有三个工人在干活。她问第一个人，“">
+<meta name="keywords" content="服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己动手开发网络服务器（一）">
+<meta property="og:url" content="http://yoursite.com/2017/04/14/自己动手开发网络服务器（一）/index.html">
+<meta property="og:site_name" content="闫瑞龙的个人博客">
+<meta property="og:description" content="————————————————————————————————————————————————— 原文链接：http://ruslanspivak.com/lsbaws-part1/  译文链接：http://codingpy.com/article/build-a-simple-web-server-part-one/ 有一天，一位女士散步时经过一个工地，看见有三个工人在干活。她问第一个人，“">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_request_response.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part1/browser_hello_world.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part1/LSBAWS_URL_Web_address.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part1/LSBAWS_socket.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_request_anatomy.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_response_anatomy.png">
+<meta property="og:updated_time" content="2018-03-15T14:22:29.217Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己动手开发网络服务器（一）">
+<meta name="twitter:description" content="————————————————————————————————————————————————— 原文链接：http://ruslanspivak.com/lsbaws-part1/  译文链接：http://codingpy.com/article/build-a-simple-web-server-part-one/ 有一天，一位女士散步时经过一个工地，看见有三个工人在干活。她问第一个人，“">
+<meta name="twitter:image" content="http://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_request_response.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="闫瑞龙的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">闫瑞龙</h5>
+          <a href="mailto:719114998@qq.com" title="719114998@qq.com" class="mail">719114998@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">自己动手开发网络服务器（一）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">自己动手开发网络服务器（一）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-13T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-04-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-自己动手开发网络服务器（一）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">自己动手开发网络服务器（一）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-14 00:00:00" datetime="2017-04-13T16:00:00.000Z"  itemprop="datePublished">2017-04-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>—————————————————————————————————————————————————</p>
+<pre><code>原文链接：http://ruslanspivak.com/lsbaws-part1/
+
+译文链接：http://codingpy.com/article/build-a-simple-web-server-part-one/
+</code></pre><p>有一天，一位女士散步时经过一个工地，看见有三个工人在干活。她问第一个人，“你在做什么？”第一个人有点不高兴，吼道“难道你看不出来我在砌砖吗？”女士对这个答案并不满意，接着问第二个人他在做什么。第二个人回答道，“我正在建造一堵砖墙。”然后，他转向第一个人，说道：“嘿，你砌的砖已经超过墙高了。你得把最后一块砖拿下来。”女士对这个答案还是不满意，她接着问第三个人他在做什么。第三个人抬头看着天空，对她说：“我在建造这个世界上有史以来最大的教堂”。就在他望着天空出神的时候，另外两个人已经开始争吵多出的那块砖。他慢慢转向前两个人，说道：“兄弟们，别管那块砖了。这是一堵内墙,之后还会被刷上石灰的，没人会注意到这块砖。接着砌下层吧。”</p>
+<p>这个故事的寓意在于，当你掌握了整个系统的设计，明白不同的组件是以何种方式组合在一起的（砖块，墙，教堂）时候，你就能够更快地发现并解决问题（多出的砖块）。</p>
+<p>但是，这个故事与从头开发一个网络服务器有什么关系呢？</p>
+<p>在我看来，要成为一名更优秀的程序员，你必须更好地理解自己日常使用的软件系统，而这就包括了编程语言、编译器、解释器、数据库与操作系统、网络服务器和网络开发框架。而要想更好、更深刻地理解这些系统，你必须从头重新开发这些系统，一步一个脚印地重来一遍。</p>
+<p>孔子曰：不闻不若闻之，闻之不若见之，见之不若知之，知之不若行之。</p>
+<p>我希望你读到这里的时候，已经认可了通过重新开发不同软件系统来学习其原理这种方式。</p>
+<p>《自己动手开发网络服务器》会分为三个部分，将介绍如何从头开发一个简易网络服务器。我们这就开始吧。</p>
+<p>首先，到底什么是网络服务器？</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_request_response.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>简而言之，它是在物理服务器上搭建的一个网络连接服务器（networking server），永久地等待客户端发送请求。当服务器收到请求之后，它会生成响应并将其返回至客户端。客户端与服务器之间的通信，是以HTTP协议进行的。客户端可以是浏览器，也可以是任何支持HTTP协议的软件。</p>
+<p>那么，网络服务器的简单实现形式会是怎样的呢？下面是我对此的理解。示例代码使用Python语言实现，不过即使你不懂Python语言，你应该也可以从代码和下面的解释中理解相关的概念：</p>
+<pre><code>import socket
+
+HOST, PORT = &apos;&apos;, 8888
+
+listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+listen_socket.bind((HOST, PORT))
+listen_socket.listen(1)
+print &apos;Serving HTTP on port %s ...&apos; % PORT
+while True:
+    client_connection, client_address = listen_socket.accept()
+    request = client_connection.recv(1024)
+    print request
+
+    http_response = &quot;&quot;&quot;\
+    HTTP/1.1 200 OK
+
+    Hello, World!
+    &quot;&quot;&quot;
+
+    client_connection.sendall(http_response)
+    client_connection.close()
+</code></pre><p>将上面的代码保存为webserver1.py，或者直接从我的Github仓库下载，然后通过命令行运行该文件：</p>
+<pre><code>$ python webserver1.py
+Serving HTTP on port 8888 …
+</code></pre><p>接下来，在浏览器的地址栏输入这个链接：<a href="http://localhost:8888/hello，然后按下回车键，你就会看见神奇的一幕。在浏览器中，应该会出现“Hello" target="_blank" rel="noopener">http://localhost:8888/hello，然后按下回车键，你就会看见神奇的一幕。在浏览器中，应该会出现“Hello</a>, World!”这句话：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part1/browser_hello_world.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>是不是很神奇？接下来，我们来分析背后的实现原理。</p>
+<p>首先，我们来看你所输入的网络地址。它的名字叫URL（Uniform Resource Locator，统一资源定位符），其基本结构如下：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part1/LSBAWS_URL_Web_address.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>通过URL，你告诉了浏览器它所需要发现并连接的网络服务器地址，以及获取服务器上的页面路径。不过在浏览器发送HTTP请求之前，它首先要与目标网络服务器建立TCP连接。然后，浏览器再通过TCP连接发送HTTP请求至服务器，并等待服务器返回HTTP响应。当浏览器收到响应的时候，就会在页面上显示响应的内容，而在上面的例子中,浏览器显示的就是“Hello, World!”这句话。</p>
+<p>那么，在客户端发送请求、服务器返回响应之前，二者究竟是如何建立起TCP连接的呢？要建立起TCP连接，服务器和客户端都使用了所谓的套接字（socket）。接下来，我们不直接使用浏览器，而是在命令行使用telnet手动模拟浏览器。</p>
+<p>在运行网络服务器的同一台电脑商，通过命令行开启一次telnet会话，将需要连接的主机设置为localhost，主机的连接端口设置为8888，然后按回车键：</p>
+<pre><code>$ telnet localhost 8888
+Trying 127.0.0.1 …
+Connected to localhost.
+</code></pre><p>完成这些操作之后，你其实已经与本地运行的网络服务器建立了TCP连接，随时可以发送和接收HTTP信息。在下面这张图片里，展示的是服务器接受新TCP连接所需要完成的标准流程。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part1/LSBAWS_socket.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>在上面那个telnet会话中，我们输入GET /hello HTTP/1.1，然后按下回车：</p>
+<pre><code>$ telnet localhost 8888
+Trying 127.0.0.1 …
+Connected to localhost.
+GET /hello HTTP/1.1
+
+HTTP/1.1 200 OK
+Hello, World!
+</code></pre><p>你成功地手动模拟了浏览器！你手动发送了一条HTTP请求，然后收到了HTTP响应。下面这幅图展示的是HTTP请求的基本结构：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_request_anatomy.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>HTTP请求行包括了HTTP方法（这里使用的是GET方法，因为我们希望从服务器获取内容），服务器页面路径（/hello）以及HTTP协议的版本。</p>
+<p>为了尽量简化，我们目前实现的网络服务器并不会解析上面的请求，你完全可以输入一些没有任何意义的代码，也一样可以收到”Hello, World!”响应。</p>
+<p>在你输入请求代码并按下回车键之后，客户端就将该请求发送至服务器了，服务器则会解析你发送的请求，并返回相应的HTTP响应。</p>
+<p>下面这张图显示的是服务器返回至客户端的HTTP响应详情：</p>
+<p><img src="http://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_response_anatomy.png" alt=""></p>
+<p>我们来分析一下。响应中包含了状态行HTTP/1.1 200 OK，之后是必须的空行，然后是HTTP响应的正文。</p>
+<p>响应的状态行HTTP/1.1 200 OK中，包含了HTTP版本、HTTP状态码以及与状态码相对应的原因短语（Reason Phrase）。浏览器收到响应之后，会显示响应的正文，这就是为什么你会在浏览器中看到“Hello, World!”这句话。</p>
+<p>这就是网络服务器基本的工作原理了。简单回顾一下：网络服务器首先创建一个侦听套接字（listening socket），并开启一个永续循环接收新连接；客户端启动一个与服务器的TCP连接，成功建立连接之后，向服务器发送HTTP请求，之后服务器返回HTTP响应。要建立TCP连接，客户端和服务器都使用了套接字。</p>
+<p>现在，你已经拥有了一个基本可用的简易网络服务器，你可以使用浏览器或其他HTTP客户端进行测试。正如上文所展示的，通过telnet命令并手动输入HTTP请求，你自己也可以成为一个HTTP客户端。</p>
+<p>下面给大家布置一道思考题：如何在不对服务器代码作任何修改的情况下，通过该服务器运行Djando应用、Flask应用和Pyramid应用，同时满足这些不同网络框架的要求？</p>
+<p>答案将在《自己动手开发网络服务器》系列文章的第二部分揭晓。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-03-15T14:22:29.217Z" itemprop="dateUpdated">2018-03-15 22:22:29</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/04/14/自己动手开发网络服务器（一）/" target="_blank" rel="external">http://yoursite.com/2017/04/14/自己动手开发网络服务器（一）/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="闫瑞龙">
+            闫瑞龙
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/服务器/">服务器</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/17/自己动手开发网络服务器（二）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">自己动手开发网络服务器（二）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/04/13/LEGB规则/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">LEGB规则</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>闫瑞龙 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">true</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

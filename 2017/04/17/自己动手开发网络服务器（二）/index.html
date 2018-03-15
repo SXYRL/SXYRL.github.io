@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>自己动手开发网络服务器（二） | 闫瑞龙的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#00a0e6">
+    
+    
+    <meta name="keywords" content="服务器">
+    <meta name="description" content="在《自己动手开发网络服务器（一）》中，我给大家留了一个问题：如何在不对服务器代码作任何修改的情况下，通过该服务器运行Djando应用、Flask应用和Pyramid应用，同时满足这些不同网络框架的要求？读完这篇文章，你就可以回答这个问题了。 以前，你选择的Python网络框架将会限制所能够使用的网络服务器，反之亦然。如果框架和服务器在设计时就是可以相互匹配的，那你就不会面临这个问题：">
+<meta name="keywords" content="服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己动手开发网络服务器（二）">
+<meta property="og:url" content="http://yoursite.com/2017/04/17/自己动手开发网络服务器（二）/index.html">
+<meta property="og:site_name" content="闫瑞龙的个人博客">
+<meta property="og:description" content="在《自己动手开发网络服务器（一）》中，我给大家留了一个问题：如何在不对服务器代码作任何修改的情况下，通过该服务器运行Djando应用、Flask应用和Pyramid应用，同时满足这些不同网络框架的要求？读完这篇文章，你就可以回答这个问题了。 以前，你选择的Python网络框架将会限制所能够使用的网络服务器，反之亦然。如果框架和服务器在设计时就是可以相互匹配的，那你就不会面临这个问题：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_before_wsgi.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_after_wsgi.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_wsgi_idea.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_browser_pyramid.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_browser_flask.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_browser_django.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_wsgi_interface.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_browser_simple_wsgi_app.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_http_response.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_http_response_explanation.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_environ.png">
+<meta property="og:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_server_summary.png">
+<meta property="og:updated_time" content="2018-03-15T14:32:47.064Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己动手开发网络服务器（二）">
+<meta name="twitter:description" content="在《自己动手开发网络服务器（一）》中，我给大家留了一个问题：如何在不对服务器代码作任何修改的情况下，通过该服务器运行Djando应用、Flask应用和Pyramid应用，同时满足这些不同网络框架的要求？读完这篇文章，你就可以回答这个问题了。 以前，你选择的Python网络框架将会限制所能够使用的网络服务器，反之亦然。如果框架和服务器在设计时就是可以相互匹配的，那你就不会面临这个问题：">
+<meta name="twitter:image" content="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_before_wsgi.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="闫瑞龙的个人博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">闫瑞龙</h5>
+          <a href="mailto:719114998@qq.com" title="719114998@qq.com" class="mail">719114998@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">自己动手开发网络服务器（二）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">自己动手开发网络服务器（二）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-16T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-04-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-自己动手开发网络服务器（二）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">自己动手开发网络服务器（二）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-17 00:00:00" datetime="2017-04-16T16:00:00.000Z"  itemprop="datePublished">2017-04-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/python/">python</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在《自己动手开发网络服务器（一）》中，我给大家留了一个问题：如何在不对服务器代码作任何修改的情况下，通过该服务器运行Djando应用、Flask应用和Pyramid应用，同时满足这些不同网络框架的要求？读完这篇文章，你就可以回答这个问题了。</p>
+<p>以前，你选择的Python网络框架将会限制所能够使用的网络服务器，反之亦然。如果框架和服务器在设计时就是可以相互匹配的，那你就不会面临这个问题：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_before_wsgi.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>但是如果你试图将设计不相匹配的服务器与框架相结合，那么你肯定就会碰到下面这张图所展示的这个问题：</p>
+<p><img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_after_wsgi.png" alt=""></p>
+<p>这就意味着，你基本上只能使用能够正常运行的服务器与框架组合，而不能选择你希望使用的服务器或框架。</p>
+<p>那么，你怎样确保可以在不修改网络服务器代码或网络框架代码的前提下，使用自己选择的服务器，并且匹配多个不同的网络框架呢？为了解决这个问题，就出现了Python Web服务器网关接口（Python Web Server Gateway Interface，简称“WSGI”）。</p>
+<p><img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_wsgi_idea.png" alt=""></p>
+<p>WSGI的出现，让开发者可以将网络框架与网络服务器的选择分隔开来，不再相互限制。现在，你可以真正地将不同的网络服务器与网络开发框架进行混合搭配，选择满足自己需求的组合。例如，你可以使用Gunicorn或Nginx/uWSGI或Waitress服务器来运行Django、Flask或Pyramid应用。正是由于服务器和框架均支持WSGI，才真正得以实现二者之间的自由混合搭配。</p>
+<p>所以，WSGI就是我在上一篇文章中所留问题的答案。你的网络服务器必须实现一个服务器端的WSGI接口，而目前所有现代Python网络框架都已经实现了框架端的WSGI接口，这样开发者不需要修改服务器的代码，就可以支持某个网络框架。</p>
+<p>网络服务器和网络框架支持WSGI协议，不仅让应用开发者选择符合自己需求的组合，同时也有利于服务器和框架的开发者，因为他们可以将注意力集中在自己擅长的领域，而不是相互倾轧。其他编程语言也拥有类似的接口：例如Java的Servlet API和Ruby的Rack。</p>
+<p>口说无凭，我猜你肯定在想：“无代码无真相！”既然如此，我就在这里给出一个非常简单的WSGI服务器实现：</p>
+<pre><code># Tested with Python 2.7.9, Linux &amp; Mac OS X
+import socket
+import StringIO
+import sys
+
+
+class WSGIServer(object):
+
+    address_family = socket.AF_INET
+    socket_type = socket.SOCK_STREAM
+    request_queue_size = 1
+
+    def __init__(self, server_address):
+        # Create a listening socket
+        self.listen_socket = listen_socket = socket.socket(
+            self.address_family,
+            self.socket_type
+        )
+        # Allow to reuse the same address
+        listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        # Bind
+        listen_socket.bind(server_address)
+        # Activate
+        listen_socket.listen(self.request_queue_size)
+        # Get server host name and port
+        host, port = self.listen_socket.getsockname()[:2]
+        self.server_name = socket.getfqdn(host)
+        self.server_port = port
+        # Return headers set by Web framework/Web application
+        self.headers_set = []
+
+    def set_app(self, application):
+        self.application = application
+
+    def serve_forever(self):
+        listen_socket = self.listen_socket
+        while True:
+            # New client connection
+            self.client_connection, client_address = listen_socket.accept()
+            # Handle one request and close the client connection. Then
+            # loop over to wait for another client connection
+            self.handle_one_request()
+
+    def handle_one_request(self):
+        self.request_data = request_data = self.client_connection.recv(1024)
+        # Print formatted request data a la &apos;curl -v&apos;
+        print(&apos;&apos;.join(
+            &apos;&lt; {line}\n&apos;.format(line=line)
+            for line in request_data.splitlines()
+        ))
+
+        self.parse_request(request_data)
+
+        # Construct environment dictionary using request data
+        env = self.get_environ()
+
+        # It&apos;s time to call our application callable and get
+        # back a result that will become HTTP response body
+        result = self.application(env, self.start_response)
+
+        # Construct a response and send it back to the client
+        self.finish_response(result)
+
+    def parse_request(self, text):
+        request_line = text.splitlines()[0]
+        request_line = request_line.rstrip(&apos;\r\n&apos;)
+        # Break down the request line into components
+        (self.request_method,  # GET
+         self.path,            # /hello
+         self.request_version  # HTTP/1.1
+         ) = request_line.split()
+
+    def get_environ(self):
+        env = {}
+        # The following code snippet does not follow PEP8 conventions
+        # but it&apos;s formatted the way it is for demonstration purposes
+        # to emphasize the required variables and their values
+        #
+        # Required WSGI variables
+        env[&apos;wsgi.version&apos;]      = (1, 0)
+        env[&apos;wsgi.url_scheme&apos;]   = &apos;http&apos;
+        env[&apos;wsgi.input&apos;]        = StringIO.StringIO(self.request_data)
+        env[&apos;wsgi.errors&apos;]       = sys.stderr
+        env[&apos;wsgi.multithread&apos;]  = False
+        env[&apos;wsgi.multiprocess&apos;] = False
+        env[&apos;wsgi.run_once&apos;]     = False
+        # Required CGI variables
+        env[&apos;REQUEST_METHOD&apos;]    = self.request_method    # GET
+        env[&apos;PATH_INFO&apos;]         = self.path              # /hello
+        env[&apos;SERVER_NAME&apos;]       = self.server_name       # localhost
+        env[&apos;SERVER_PORT&apos;]       = str(self.server_port)  # 8888
+        return env
+
+    def start_response(self, status, response_headers, exc_info=None):
+        # Add necessary server headers
+        server_headers = [
+            (&apos;Date&apos;, &apos;Tue, 31 Mar 2015 12:54:48 GMT&apos;),
+            (&apos;Server&apos;, &apos;WSGIServer 0.2&apos;),
+        ]
+        self.headers_set = [status, response_headers + server_headers]
+        # To adhere to WSGI specification the start_response must return
+        # a &apos;write&apos; callable. We simplicity&apos;s sake we&apos;ll ignore that detail
+        # for now.
+        # return self.finish_response
+
+    def finish_response(self, result):
+        try:
+            status, response_headers = self.headers_set
+            response = &apos;HTTP/1.1 {status}\r\n&apos;.format(status=status)
+            for header in response_headers:
+                response += &apos;{0}: {1}\r\n&apos;.format(*header)
+            response += &apos;\r\n&apos;
+            for data in result:
+                response += data
+            # Print formatted response data a la &apos;curl -v&apos;
+            print(&apos;&apos;.join(
+                &apos;&gt; {line}\n&apos;.format(line=line)
+                for line in response.splitlines()
+            ))
+            self.client_connection.sendall(response)
+        finally:
+            self.client_connection.close()
+
+
+SERVER_ADDRESS = (HOST, PORT) = &apos;&apos;, 8888
+
+
+def make_server(server_address, application):
+    server = WSGIServer(server_address)
+    server.set_app(application)
+    return server
+
+
+if __name__ == &apos;__main__&apos;:
+    if len(sys.argv) &lt; 2:
+        sys.exit(&apos;Provide a WSGI application object as module:callable&apos;)
+    app_path = sys.argv[1]
+    module, application = app_path.split(&apos;:&apos;)
+    module = __import__(module)
+    application = getattr(module, application)
+    httpd = make_server(SERVER_ADDRESS, application)
+    print(&apos;WSGIServer: Serving HTTP on port {port} ...\n&apos;.format(port=PORT))
+    httpd.serve_forever()
+</code></pre><p>上面的代码比第一部分的服务器实现代码要长的多，但是这些代码实际也不算太长，只有不到150行，大家理解起来并不会太困难。上面这个服务器的功能也更多——它可以运行你使用自己喜欢的框架所写出来的网络应用，无论你选择Pyramid、Flask、Django或是其他支持WSGI协议的框架。</p>
+<p>你不信？你可以自己测试一下，看看结果如何。将上述代码保存为webserver2.py，或者直接从我的Github仓库下载。如果你运行该文件时没有提供任何参数，那么程序就会报错并退出。</p>
+<pre><code>$ python webserver2.py
+Provide a WSGI application object as module:callable
+</code></pre><p>上述程序设计的目的，就是运行你开发的网络应用，但是你还需要满足一些它的要求。要运行服务器，你只需要安装Python即可。但是要运行使用Pyramid、Flask和Django等框架开发的网络应用，你还需要先安装这些框架。我们接下来安装这三种框架。我倾向于使用virtualenv安装。请按照下面的提示创建并激活一个虚拟环境，然后安装这三个网络框架。</p>
+<pre><code>$ [sudo] pip install virtualenv
+$ mkdir ~/envs
+$ virtualenv ~/envs/lsbaws/
+$ cd ~/envs/lsbaws/
+$ ls
+bin  include  lib
+$ source bin/activate
+(lsbaws) $ pip install pyramid
+(lsbaws) $ pip install flask
+(lsbaws) $ pip install django
+</code></pre><p>接下来，你需要创建一个网络应用。我们首先创建Pyramid应用。将下面的代码保存为pyramidapp.py文件，放至webserver2.py所在的文件夹中，或者直接从我的Github仓库下载该文件：</p>
+<pre><code>from pyramid.config import Configurator
+from pyramid.response import Response
+
+
+def hello_world(request):
+    return Response(
+        &apos;Hello world from Pyramid!\n&apos;,
+        content_type=&apos;text/plain&apos;,
+    )
+
+config = Configurator()
+config.add_route(&apos;hello&apos;, &apos;/hello&apos;)
+config.add_view(hello_world, route_name=&apos;hello&apos;)
+app = config.make_wsgi_app()
+</code></pre><p>现在，你可以通过自己开发的网络服务器来启动上面的Pyramid应用。</p>
+<pre><code>(lsbaws) $ python webserver2.py pyramidapp:app
+WSGIServer: Serving HTTP on port 8888 ...
+</code></pre><p>在运行webserver2.py时，你告诉自己的服务器去加载pyramidapp模块中的app可调用对象（callable）。你的服务器现在可以接收HTTP请求，并将请求中转至你的Pyramid应用。应用目前只能处理一个路由（route）：/hello。在浏览器的地址栏输入<a href="http://localhost:8888/hello，按下回车键，观察会出现什么情况：" target="_blank" rel="noopener">http://localhost:8888/hello，按下回车键，观察会出现什么情况：</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_browser_pyramid.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>你还可以在命令行使用curl命令，来测试服务器运行情况：</p>
+<pre><code>$ curl -v http://localhost:8888/hello
+...
+</code></pre><p>接下来我们创建Flask应用。重复上面的步骤。</p>
+<pre><code>from flask import Flask
+
+
+from flask import Flask
+from flask import Response
+flask_app = Flask(&apos;flaskapp&apos;)
+
+
+@flask_app.route(&apos;/hello&apos;)
+def hello_world():
+    return Response(
+        &apos;Hello world from Flask!\n&apos;,
+        mimetype=&apos;text/plain&apos;
+    )
+
+app = flask_app.wsgi_app
+</code></pre><p>将上面的代码保存为flaskapp.py，或者直接从我的Github仓库下载文件，并运行：</p>
+<pre><code>(lsbaws) $ python webserver2.py flaskapp:app
+WSGIServer: Serving HTTP on port 8888 ...
+</code></pre><p>然后在浏览器地址栏输入<a href="http://localhost:8888/hello，并按下回车：" target="_blank" rel="noopener">http://localhost:8888/hello，并按下回车：</a></p>
+<p><img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_browser_flask.png" alt=""></p>
+<p>同样，在命令行使用curl命令，看看服务器是否会返回Flask应用生成的信息：</p>
+<pre><code>$ curl -v http://localhost:8888/hello
+...
+</code></pre><p>这个服务器是不是也能支持Django应用？试一试就知道了！不过接下来的操作更为复杂一些，我建议大家克隆整个仓库，并使用其中的djangoapp.py文件。下面的代码将一个名叫helloworld的Django应用添加至当前的Python路径中，然后导入了该项目的WSGI应用。</p>
+<pre><code>import sys
+sys.path.insert(0, &apos;./helloworld&apos;)
+from helloworld import wsgi
+
+
+app = wsgi.application
+</code></pre><p>将上面的代码保存为djangoapp.py，并使用你开发的服务器运行这个Django应用。</p>
+<pre><code>(lsbaws) $ python webserver2.py djangoapp:app
+WSGIServer: Serving HTTP on port 8888 ...
+</code></pre><p>同样，在浏览器中输入<a href="http://localhost:8888/hello，并按下回车键：" target="_blank" rel="noopener">http://localhost:8888/hello，并按下回车键：</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_browser_django.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>接下来，和前面几次一样，你通过命令行使用curl命令进行测试，确认了这个Djando应用成功处理了你发出的请求：</p>
+<pre><code>$ curl -v http://localhost:8888/hello
+...
+</code></pre><p>你有没有按照上面的步骤测试？你做到了让服务器支持全部三种框架吗？如果没有，请尽量自己动手操作。阅读代码很重要，但这系列文章的目的在于重新开发，而这意味着你需要自己亲自动手。最好是你自己重新输入所有的代码，并确保代码运行结果符合预期。</p>
+<p>经过上面的介绍，你应该已经认识到了WSGI的强大之处：它可以让你自由混合搭配网络服务器和框架。WSGI为Python网络服务器与Python网络框架之间的交互提供了一个极简的接口，而且非常容易在服务器端和框架端实现。下面的代码段分别展示了服务器端和框架端的WSGI接口：</p>
+<pre><code>def run_application(application):
+    &quot;&quot;&quot;Server code.&quot;&quot;&quot;
+    # This is where an application/framework stores
+    # an HTTP status and HTTP response headers for the server
+    # to transmit to the client
+    headers_set = []
+    # Environment dictionary with WSGI/CGI variables
+    environ = {}
+
+    def start_response(status, response_headers, exc_info=None):
+        headers_set[:] = [status, response_headers]
+
+    # Server invokes the ‘application&apos; callable and gets back the
+    # response body
+    result = application(environ, start_response)
+    # Server builds an HTTP response and transmits it to the client
+    …
+
+def app(environ, start_response):
+    &quot;&quot;&quot;A barebones WSGI app.&quot;&quot;&quot;
+    start_response(&apos;200 OK&apos;, [(&apos;Content-Type&apos;, &apos;text/plain&apos;)])
+    return [&apos;Hello world!&apos;]
+
+run_application(app)
+</code></pre><p>下面给大家解释一下上述代码的工作原理：</p>
+<p>网络框架提供一个命名为application的可调用对象（WSGI协议并没有指定如何实现这个对象）。<br>服务器每次从HTTP客户端接收请求之后，调用application。它会向可调用对象传递一个名叫environ的字典作为参数，其中包含了WSGI/CGI的诸多变量，以及一个名为start_response的可调用对象。<br>框架/应用生成HTTP状态码以及HTTP响应报头（HTTP response headers），然后将二者传递至start_response，等待服务器保存。此外，框架/应用还将返回响应的正文。<br>服务器将状态码、响应报头和响应正文组合成HTTP响应，并返回给客户端（这一步并不属于WSGI协议）。<br>下面这张图直观地说明了WSGI接口的情况：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_wsgi_interface.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>有一点要提醒大家，当你使用上述框架开发网络应用的时候，你处理的是更高层级的逻辑，并不会直接处理WSGI协议相关的要求，但是我很清楚，既然你正在看这篇文章，你一定对框架端的WSGI接口很感兴趣。所以，我们接下来在不使用Pyramid、Flask或Djando框架的前提下，自己开发一个极简的WSGI网络应用/网络框架，并使用WSGI服务器运行该应用：</p>
+<pre><code>def app(environ, start_response):
+    &quot;&quot;&quot;A barebones WSGI application.
+
+    This is a starting point for your own Web framework :)
+    &quot;&quot;&quot;
+    status = &apos;200 OK&apos;
+    response_headers = [(&apos;Content-Type&apos;, &apos;text/plain&apos;)]
+    start_response(status, response_headers)
+    return [&apos;Hello world from a simple WSGI application!\n&apos;]
+</code></pre><p>将上述代码保存为wsgiapp.py文件，或者直接从我的Github仓库下载，然后利用网络服务器运行该应用：</p>
+<pre><code>(lsbaws) $ python webserver2.py wsgiapp:app
+WSGIServer: Serving HTTP on port 8888 ...
+</code></pre><p>在浏览器中输入下图中的地址，然后按回车键。结果应该是这样的：</p>
+<p><img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_browser_simple_wsgi_app.png" alt=""></p>
+<p>你刚刚自己编写了一个极简的WSGI网络框架！太不可思议了。</p>
+<p>接下来，我们重新分析服务器返回给客户端的对象。下面这张图展示的是你通过HTTP客户端调用Pyramid应用后，服务器生成的HTTP响应：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_http_response.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>上图中的响应与你在第一篇中看到的有些类似，但是也有明显不同之处。举个例子，其中就出现了你之前没有看到过的4歌HTTP报头：Content-Type，Content-Length，Date和Server。这些事网络服务器返回的响应对象通常都会包含的报头。不过，这四个都不是必须的。报头的目的是传递有关HTTP请求/响应的额外信息。</p>
+<p>既然你已经对WSGI接口有了更深的理解，下面这张图对响应对象的内容进行了更详细的解释，说明了每条内容是如何产生的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_http_response_explanation.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>到目前为止，我还没有介绍过environ字典的具体内容，但简单来说，它是一个必须包含着WSGI协议所指定的某些WSGI和CGI变量。服务器从HTTP请求中获取字典所需的值。下面这张图展示的是字典的详细内容：</p>
+<p><img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_environ.png" alt=""></p>
+<p>网络框架通过该字典提供的信息，根据指定的路由和请求方法等参数来决定使用哪个视图（views），从哪里读取请求正文，以及如何输出错误信息。</p>
+<p>截至目前，你已经成功创建了自己的支持WSGI协议的网络服务器，还利用不同的网络框架开发了多个网络应用。另外，你还自己开发了一个极简的网络框架。本文介绍的内容不可谓不丰富。我们接下来回顾一下WSGI网络服务器如何处理HTTP请求：</p>
+<p>首先，服务器启动并加载网络框架/应用提供的application可调用对象<br>然后，服务器读取一个请求信息<br>然后，服务器对请求进行解析<br>然后，服务器使用请求数据创建一个名叫environ的字典<br>然后，服务器以environ字典和start_response可调用对象作为参数，调用application，并获得应用生成的响应正文。<br>然后，服务器根据调用application对象后返回的数据，以及start_response设置的状态码和响应标头，构建一个HTTP响应。<br>最后，服务器将HTTP响应返回至客户端。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ruslanspivak.com/lsbaws-part2/lsbaws_part2_server_summary.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>以上就是第二部分的所有内容。你现在已经拥有了一个正常运行的WSGI服务器，可以支持通过遵守WSGI协议的网络框架所写的网络应用。最棒的是，这个服务器可以不需要作任何代码修改，就可以与多个网络框架配合使用。</p>
+<p>最后，我再给大家留一道思考题：怎样让服务器一次处理多个请求？</p>
+<pre><code>原文链接：http://ruslanspivak.com/lsbaws-part2/
+
+译文链接：http://codingpy.com/article/build-a-simple-web-server-part-two/
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-03-15T14:32:47.064Z" itemprop="dateUpdated">2018-03-15 22:32:47</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/04/17/自己动手开发网络服务器（二）/" target="_blank" rel="external">http://yoursite.com/2017/04/17/自己动手开发网络服务器（二）/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="闫瑞龙">
+            闫瑞龙
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/服务器/">服务器</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/18/自己动手开发网络服务器（三）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">自己动手开发网络服务器（三）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/04/14/自己动手开发网络服务器（一）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">自己动手开发网络服务器（一）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>闫瑞龙 &copy; 2015 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">true</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
